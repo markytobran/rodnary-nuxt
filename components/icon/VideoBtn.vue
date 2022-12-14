@@ -1,0 +1,11 @@
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" :fill="props.color" viewBox="0 0 24 24">
+    <path d="M3 22v-20l18 10-18 10z" />
+  </svg>
+</template>
+
+<script setup lang="ts">
+const props = defineProps({
+  color: String,
+})
+</script>
