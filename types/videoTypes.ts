@@ -20,7 +20,7 @@ export interface VideoDataType {
 
 export enum API {
   SKIP = 0,
-  LIMIT = 8,
+  LIMIT = 4,
 }
 
 export interface ImageLinks {
