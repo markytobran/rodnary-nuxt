@@ -21,5 +21,5 @@ interface HomeTopVideos {
   }
 }
 
-const { data: videos } = ((await useVideoFetch(`/topvideos/home?limit=3&skip=0`)) as unknown) as HomeTopVideos
+const { data: videos } = ((await useVideoFetch(`/topvideos?limit=3&skip=0`)) as unknown) as HomeTopVideos
 </script>
