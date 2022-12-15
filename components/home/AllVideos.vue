@@ -50,8 +50,17 @@ interface limitAndSkip {
   skip: number
 }
 
+interface HomePageVideos {
+  all: VideoDataType[]
+  natural: VideoDataType[]
+  commercial: VideoDataType[]
+  river: VideoDataType[]
+  feeder: VideoDataType[]
+  float: VideoDataType[]
+}
+
 const { data } = await useVideoFetch(`/allvideos?limit=${API.LIMIT}&skip=${API.SKIP}`)
-const { all, natural, commercial, river, feeder, float } = data.value
+const { all, natural, commercial, river, feeder, float } = (data.value as unknown) as HomePageVideos
 
 allVideos.value = all
 commercialVideos.value = commercial
@@ -72,7 +81,7 @@ async function fetchMoreNaturalVideos({ limit, skip }: limitAndSkip) {
 
 async function fetchMoreCommercialVideos({ limit, skip }: limitAndSkip) {
   const { data } = await useVideoFetch(`/categories/venue/commercial?limit=${limit}&skip=${skip}`)
-  commercialVideos.value = commercial.value instanceof Array ? commercial.value.concat(data.value) : commercialVideos.value
+  commercialVideos.value = commercialVideos.value instanceof Array ? commercialVideos.value.concat(data.value) : commercialVideos.value
 }
 
 async function fetchMoreRiverVideos({ limit, skip }: limitAndSkip) {
