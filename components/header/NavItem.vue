@@ -1,7 +1,7 @@
 <template>
   <li
     class="mb-12 mr-8 md:mr-auto md:ml-auto relative h-12 flex justify-center rounded-lg w-1/12 md:w-11/12 transform nav-link z-20"
-    :class="$route.path === props.path ? 'md:bg-primary-color-light translate-x-10' : 'bg-transparent'"
+    :class="$route.path === props.path ? 'md:bg-primary-color-200 translate-x-10' : 'bg-transparent'"
   >
     <NuxtLink :to="props.path" class="flex justify-center items-center mt-5 md:mt-0">
       <IconHome class="fill-current" :class="$route.path === props.path ? 'text-white -translate-x-10' : 'text-secondary-color'" />

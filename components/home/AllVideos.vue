@@ -11,24 +11,24 @@
       <h1 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h1>
       <div class="mt-10">
         <UITitleSlider title="Natural Venue Fishing" url="/categories/venue/natural" />
-        <UIBaseSlider :videos="naturalVideos" @fetch-video="fetchMoreNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
+        <UIBaseSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
       </div>
 
       <div class="-mt-44">
         <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
-        <UIBaseSlider :videos="commercialVideos" @fetch-video="fetchMoreCommercialVideos" class="mt-24 md:mt-20" />
+        <UIBaseSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
         <UITitleSlider title="River Fishing" url="/categories/water/river" />
-        <UIBaseSlider :videos="riverVideos" @fetch-video="fetchMoreRiverVideos" class="mt-24 md:mt-20" />
+        <UIBaseSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
         <UITitleSlider title="Feeder Fishing" url="/categories/fishing/feeder" />
-        <UIBaseSlider :videos="feederVideos" @fetch-video="fetchMoreFeederVideos" class="mt-24 md:mt-20" />
+        <UIBaseSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
         <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
-        <UIBaseSlider :videos="floatVideos" @fetch-video="fetchMoreFloatVideos" class="mt-24 md:mt-20" />
+        <UIBaseSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
       </div>
     </div>
   </section>
@@ -59,9 +59,9 @@ interface HomePageVideos {
   float: VideoDataType[]
 }
 
-const { data } = await useVideoFetch(`/allvideos?limit=${API.LIMIT}&skip=${API.SKIP}`)
-const { all, natural, commercial, river, feeder, float } = (data.value as unknown) as HomePageVideos
+const { data } = await useVideoFetch(`/allvideos`)
 
+const { all, natural, commercial, river, feeder, float } = (data.value as unknown) as HomePageVideos
 allVideos.value = all
 commercialVideos.value = commercial
 naturalVideos.value = natural
@@ -74,27 +74,27 @@ async function fetchAllVideo({ limit, skip }: limitAndSkip) {
   allVideos.value = allVideos.value instanceof Array ? allVideos.value.concat(data.value) : allVideos.value
 }
 
-async function fetchMoreNaturalVideos({ limit, skip }: limitAndSkip) {
+async function fetchNaturalVideos({ limit, skip }: limitAndSkip) {
   const { data } = await useVideoFetch(`/categories/venue/natural?limit=${limit}&skip=${skip}`)
   naturalVideos.value = naturalVideos.value instanceof Array ? naturalVideos.value.concat(data.value) : naturalVideos.value
 }
 
-async function fetchMoreCommercialVideos({ limit, skip }: limitAndSkip) {
+async function fetchCommercialVideos({ limit, skip }: limitAndSkip) {
   const { data } = await useVideoFetch(`/categories/venue/commercial?limit=${limit}&skip=${skip}`)
   commercialVideos.value = commercialVideos.value instanceof Array ? commercialVideos.value.concat(data.value) : commercialVideos.value
 }
 
-async function fetchMoreRiverVideos({ limit, skip }: limitAndSkip) {
+async function fetchRiverVideos({ limit, skip }: limitAndSkip) {
   const { data } = await useVideoFetch(`/categories/water/river?limit=${limit}&skip=${skip}`)
   riverVideos.value = riverVideos.value instanceof Array ? riverVideos.value.concat(data.value) : riverVideos.value
 }
 
-async function fetchMoreFeederVideos({ limit, skip }: limitAndSkip) {
+async function fetchFeederVideos({ limit, skip }: limitAndSkip) {
   const { data } = await useVideoFetch(`/categories/fishing/feeder?limit=${limit}&skip=${skip}`)
   feederVideos.value = feederVideos.value instanceof Array ? feederVideos.value.concat(data.value) : feederVideos.value
 }
 
-async function fetchMoreFloatVideos({ limit, skip }: limitAndSkip) {
+async function fetchFloatVideos({ limit, skip }: limitAndSkip) {
   const { data } = await useVideoFetch(`/categories/fishing/float?limit=${limit}&skip=${skip}`)
   floatVideos.value = floatVideos.value instanceof Array ? floatVideos.value.concat(data.value) : floatVideos.value
 }

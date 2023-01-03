@@ -49,6 +49,7 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
+const { baseURL } = useRuntimeConfig()
 import { VideoDataType } from '~/types/videoTypes'
 import { useVideoFetch } from '~/composables/useApiFetch'
 const relatedVideos: Ref<VideoDataType | null> = ref(null)
@@ -59,7 +60,7 @@ onMounted(async () => {
   const { data } = await useVideoFetch(`/${id}`)
   video.value = data.value
 
-  const { data: channelVideos } = await useVideoFetch(`/channels/${video?.value?.channelId}`)
+  const { data: channelVideos } = await useLazyFetch(`${baseURL}/videos/channels/${video?.value?.channelId}`)
   relatedVideos.value = channelVideos.value
 })
 
@@ -68,7 +69,7 @@ const description = computed(() => video.value?.description.substring(0, 700) + 
 
 <style scoped>
 .details-section {
-  background: linear-gradient(#182b12, 85%, black);
+  background: linear-gradient(#1a2c21, 85%, black);
 }
 
 .video-container {

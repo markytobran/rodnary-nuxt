@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-primary-color-middle;
+  background: #132219;
 }

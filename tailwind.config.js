@@ -3,10 +3,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-color': '#182B12',
-        'primary-color-light': '#566B34',
+        'primary-color-200': '#2e4829',
+        'primary-color-600': '#1a2c21',
+        'primary-color-800': '#132118',
         'average-pink': '#EB9176',
-        'primary-color-middle': '#263322',
         'secondary-color': '#CF6D00',
         'icon-grey': '#424242',
       },

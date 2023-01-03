@@ -31,8 +31,8 @@
       :to="dynamicVideoRoute"
       :class="
         showDescription
-          ? 'h-60 w-full bg-primary-color rounded-lg -mt-1 flex'
-          : 'h-60 w-full bg-primary-color rounded-lg -mt-1 flex video-card-description-hover-effect'
+          ? 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex'
+          : 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex video-card-description-hover-effect'
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
@@ -49,7 +49,7 @@
         <span class="h-8 w-15 absolute -bottom-2 right-16 text-gray-100 text-xs font-semibold">{{ modifiedTime }}</span>
         <IconSubtitle v-if="isSubtitle" />
       </div>
-      <div class="h-full w-1/6 bg-primary-color-light rounded-lg flex flex-col justify-between items-center pt-3 pb-2">
+      <div class="h-full w-1/6 bg-primary-color-200 rounded-lg flex flex-col justify-between items-center pt-3 pb-2">
         <img :src="useImageUrl(props.video?.videoLanguage)" :alt="`${video?.videoLanguage} flag`" class="h-10 w-16 -mt-2" />
         <img
           :src="useImageUrl(props.video?.subFishing)"

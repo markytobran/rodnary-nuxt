@@ -1,5 +1,5 @@
 <template>
   <HomeMainImage />
-  <LazyHomePopularSection />
-  <LazyHomeAllVideos />
+  <HomePopularSection />
+  <HomeAllVideos />
 </template>
