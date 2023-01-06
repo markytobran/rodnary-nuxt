@@ -44,7 +44,7 @@
         <p class="text-gray-100 text-xs font-light pb-5 text-left break-words">
           {{ reducedDescription }}
         </p>
-        <img src="@/assets/img/logo/rodnary-logo.png" alt="Rodnary-logo" class="h-10 w-18 absolute bottom-3 left-3" />
+        <img src="@/assets/img/logo/rodnary-logo.webp" alt="Rodnary-logo" class="h-10 w-18 absolute bottom-3 left-3" />
         <span class="h-8 w-15 absolute -bottom-2 left-24 text-gray-100 text-xs font-semibold">{{ video?.videoLength }}</span>
         <span class="h-8 w-15 absolute -bottom-2 right-16 text-gray-100 text-xs font-semibold">{{ modifiedTime }}</span>
         <IconSubtitle v-if="isSubtitle" />

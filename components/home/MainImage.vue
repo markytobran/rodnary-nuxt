@@ -11,7 +11,7 @@
       src="@/assets/img/home-page/leaf1.webp"
       alt="autumn-leaf"
     />
-    <img id="leaf2" class="w-10 h-10 absolute bottom-1/3 right-12 leafs" src="@/assets/img/home-page/leaf2.png" alt="autumn-leaf" />
+    <img id="leaf2" class="w-10 h-10 absolute bottom-1/3 right-12 leafs" src="@/assets/img/home-page/leaf2.webp" alt="autumn-leaf" />
     <img
       id="leaf3"
       src="@/assets/img/home-page/autumn-leaf.webp"
@@ -24,7 +24,7 @@
       src="@/assets/img/home-page/leaf1.webp"
       alt="autumn-leaf"
     />
-    <img id="leaf5" class="w-10 h-10 absolute bottom-2/3 left-48 leafs" alt="autumn-leaf" src="@/assets/img/home-page/leaf2.png" />
+    <img id="leaf5" class="w-10 h-10 absolute bottom-2/3 left-48 leafs" alt="autumn-leaf" src="@/assets/img/home-page/leaf2.webp" />
     <img
       id="leaf6"
       src="@/assets/img/home-page/autumn-leaf.webp"
