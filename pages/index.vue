@@ -1,5 +1,5 @@
 <template>
   <HomeMainImage />
   <HomePopularSection />
-  <HomeAllVideos />
+  <!-- <HomeAllVideos /> -->
 </template>
