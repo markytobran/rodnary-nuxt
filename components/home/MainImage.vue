@@ -1,9 +1,9 @@
 <template>
   <section class="h-screen relative -ml-24">
     <picture>
-      <source srcset="@/assets/img/home-page/home-background-mobile.jpg" media="(max-width: 600px)" />
-      <source srcset="@/assets/img/home-page/home-background-tablet.jpg" media="(max-width: 991px)" />
-      <img src="@/assets/img/home-page/home-background.jpg" alt="title" class="absolute w-full -top-10 md:top-0 h-screen" />
+      <source srcset="@/assets/img/home-page/home-background-mobile.webp" media="(max-width: 600px)" />
+      <source srcset="@/assets/img/home-page/home-background-tablet.webp" media="(max-width: 991px)" />
+      <img src="@/assets/img/home-page/home-background.webp" alt="title" class="absolute w-full -top-10 md:top-0 h-screen" />
     </picture>
     <img
       id="leaf1"
