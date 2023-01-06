@@ -8,26 +8,26 @@
     <img
       id="leaf1"
       class="w-12 h-12 absolute bottom-1/3 left-48 transform rotate-90 leafs"
-      src="@/assets/img/home-page/leaf1.png"
+      src="@/assets/img/home-page/leaf1.webp"
       alt="autumn-leaf"
     />
     <img id="leaf2" class="w-10 h-10 absolute bottom-1/3 right-12 leafs" src="@/assets/img/home-page/leaf2.png" alt="autumn-leaf" />
     <img
       id="leaf3"
-      src="@/assets/img/home-page/autumn-leaf.png"
+      src="@/assets/img/home-page/autumn-leaf.webp"
       alt="autumn-leaf"
       class="w-12 h-12 absolute top-1/3 left-3/12 md:left-2/4 right-12 leafs rotate-180"
     />
     <img
       id="leaf4"
       class="w-12 h-12 absolute left-10 md:left-auto md:bottom-1/3 md:right-1/3 transform rotate-90 leafs"
-      src="@/assets/img/home-page/leaf1.png"
+      src="@/assets/img/home-page/leaf1.webp"
       alt="autumn-leaf"
     />
     <img id="leaf5" class="w-10 h-10 absolute bottom-2/3 left-48 leafs" alt="autumn-leaf" src="@/assets/img/home-page/leaf2.png" />
     <img
       id="leaf6"
-      src="@/assets/img/home-page/autumn-leaf.png"
+      src="@/assets/img/home-page/autumn-leaf.webp"
       alt="autumn-leaf"
       class="w-12 h-12 absolute left-10 top-1/3 md:top-auto md:left-auto md:bottom-1/3 md:right-2/3 transform rotate-90 leafs"
     />

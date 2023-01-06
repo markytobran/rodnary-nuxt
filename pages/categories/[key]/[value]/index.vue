@@ -2,7 +2,7 @@
   <section>
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl category-page">
       <div class="category-page-image-container relative">
-        <img src="~/assets/img/category-banner.png" class="w-full" />
+        <img src="~/assets/img/category-banner.webp" class="w-full" />
       </div>
       <div class="h-32 bg-primary-color-600 flex justify-center items-center">
         <ul class="flex gap-10 text-white font-bold text-lg">
