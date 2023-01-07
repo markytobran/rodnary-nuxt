@@ -35,4 +35,5 @@ export interface ImageLinks {
   method: string
   match: string
   ENG: string
+  'tackle review': string
 }
