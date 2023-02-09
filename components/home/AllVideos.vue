@@ -4,38 +4,41 @@
       <h1 class="font-bold text-lg text-slate-100 mb-5 md:mb-10 text-xl md:text-2xl">Popular Videos</h1>
       <div>
         <UITitleSlider title="All Videos" url="/search" />
-        <UIBaseSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
+        <UIBaseVideoSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
       </div>
     </div>
     <div class="-mt-44">
       <h1 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h1>
       <div class="mt-10">
         <UITitleSlider title="Natural Venue Fishing" url="/categories/venue/natural" />
-        <UIBaseSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
+        <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
       </div>
 
       <div class="-mt-44">
         <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
-        <UIBaseSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
+        <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
         <UITitleSlider title="River Fishing" url="/categories/water/river" />
-        <UIBaseSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
+        <UIBaseVideoSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
         <UITitleSlider title="Feeder Fishing" url="/categories/fishing/feeder" />
-        <UIBaseSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
+        <UIBaseVideoSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
         <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
-        <UIBaseSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
+        <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
       </div>
+      <div class="-mt-32"></div>
+      <UIBaseSlider :data="homePageSliderData" />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
+import { homePageSliderData } from '../../utils/imgUrls'
 import { API, VideoDataType } from '@/types/videoTypes.ts'
 import { useVideoFetch } from '~/composables/useApiFetch'
 const allVideos: Ref<VideoDataType | unknown> = ref()
@@ -60,7 +63,6 @@ interface HomePageVideos {
 }
 
 const { data } = await useVideoFetch(`/allvideos?limit=6&skip=0`)
-
 const { all, natural, commercial, river, feeder, float } = (data.value as unknown) as HomePageVideos
 allVideos.value = all
 commercialVideos.value = commercial

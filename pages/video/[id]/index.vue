@@ -41,7 +41,7 @@
       </div>
       <div class="w-full px-5 absolute -bottom-12">
         <UITitleSlider title="Related Videos" />
-        <UIBaseSlider :videos="relatedVideos" />
+        <UIBaseVideoSlider :videos="relatedVideos" />
       </div>
     </div>
   </section>

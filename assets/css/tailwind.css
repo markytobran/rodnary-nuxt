@@ -9,3 +9,11 @@
 body {
   background: #132219;
 }
+
+.content-loading {
+  @apply bg-gradient-to-r;
+  @apply from-emerald-900;
+  @apply to-emerald-600;
+  @apply animate-pulse;
+  @apply rounded-lg;
+}
