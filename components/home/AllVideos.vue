@@ -59,7 +59,7 @@ interface HomePageVideos {
   float: VideoDataType[]
 }
 
-const { data } = await useVideoFetch(`/allvideos?limit=8&skip=0`)
+const { data } = await useVideoFetch(`/allvideos?limit=6&skip=0`)
 
 const { all, natural, commercial, river, feeder, float } = (data.value as unknown) as HomePageVideos
 allVideos.value = all

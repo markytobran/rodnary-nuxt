@@ -36,4 +36,5 @@ export interface ImageLinks {
   match: string
   ENG: string
   'tackle review': string
+  HUN: string
 }

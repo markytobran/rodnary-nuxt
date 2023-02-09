@@ -13,6 +13,7 @@ const imageLinks: ImageLinks = {
   match: '33c753_2fea76dc9c684a29a8d336910427ea1b~mv2.webp',
   ENG: '33c753_f63a7d8857324d79989416a187d10964~mv2.webp',
   'tackle review': '33c753_52ea547c181048feb481931916ce47af~mv2.webp',
+  HUN: '33c753_00379a1cc33d4ba182bb17a47929813c~mv2.webp',
 }
 
 export default (id: string) => {
