@@ -26,7 +26,7 @@
               </svg>
             </div>
             <div>
-              <h2 class="text-white font-bold mt-6">{{ video?.title }}</h2>
+              <h5 class="text-white font-bold mt-6">{{ video?.title }}</h5>
               <p class="w-12/12 mt-6 pr-12 text-white font-medium mb-4">{{ description }}</p>
               <div class="text-white">
                 <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />

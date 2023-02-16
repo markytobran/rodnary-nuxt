@@ -2,4 +2,5 @@
   <HomeMainImage />
   <HomePopularSection />
   <HomeAllVideos />
+  <HomeCategoryBoard />
 </template>
