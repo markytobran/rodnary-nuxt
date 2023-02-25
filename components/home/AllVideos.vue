@@ -9,8 +9,12 @@
         </div>
       </div>
       <template #fallback>
-        <!-- this will be rendered on server side -->
-        <p>Loading comments...</p>
+        <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="content-loading h-full"></div>
+          <div class="content-loading h-full"></div>
+          <div class="content-loading h-full"></div>
+          <div class="content-loading h-full"></div>
+        </div>
       </template>
     </ClientOnly>
 
@@ -22,7 +26,6 @@
           <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
         </div>
         <template #fallback>
-          <!-- this will be rendered on server side -->
           <p>Loading comments...</p>
         </template>
       </ClientOnly>
@@ -32,7 +35,6 @@
           <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
           <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <!-- this will be rendered on server side -->
             <p>Loading comments...</p>
           </template>
         </ClientOnly>
@@ -42,7 +44,6 @@
           <UITitleSlider title="River Fishing" url="/categories/water/river" />
           <UIBaseVideoSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <!-- this will be rendered on server side -->
             <p>Loading comments...</p>
           </template>
         </ClientOnly>
@@ -62,7 +63,6 @@
           <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
           <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <!-- this will be rendered on server side -->
             <p>Loading comments...</p>
           </template>
         </ClientOnly>
