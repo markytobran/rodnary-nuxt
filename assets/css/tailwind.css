@@ -10,6 +10,10 @@ body {
   background: #132219;
 }
 
+.card-shadow {
+  box-shadow: -20px 31px 19px 4px rgba(0, 0, 0, 0.5);
+}
+
 .content-loading {
   @apply bg-gradient-to-r;
   @apply from-emerald-900;
