@@ -26,7 +26,12 @@
           <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
         </div>
         <template #fallback>
-          <p>Loading comments...</p>
+          <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            <div class="content-loading h-full"></div>
+            <div class="content-loading h-full"></div>
+            <div class="content-loading h-full"></div>
+            <div class="content-loading h-full"></div>
+          </div>
         </template>
       </ClientOnly>
 
@@ -35,7 +40,12 @@
           <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
           <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <p>Loading comments...</p>
+            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+            </div>
           </template>
         </ClientOnly>
       </div>
@@ -44,7 +54,12 @@
           <UITitleSlider title="River Fishing" url="/categories/water/river" />
           <UIBaseVideoSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <p>Loading comments...</p>
+            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+            </div>
           </template>
         </ClientOnly>
       </div>
@@ -53,8 +68,12 @@
           <UITitleSlider title="Feeder Fishing" url="/categories/fishing/feeder" />
           <UIBaseVideoSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <!-- this will be rendered on server side -->
-            <p>Loading comments...</p>
+            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+            </div>
           </template>
         </ClientOnly>
       </div>
@@ -63,7 +82,12 @@
           <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
           <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
           <template #fallback>
-            <p>Loading comments...</p>
+            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+              <div class="content-loading h-full"></div>
+            </div>
           </template>
         </ClientOnly>
       </div>
@@ -76,14 +100,14 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { homePageSliderData } from '../../utils/imgUrls'
-import { API, VideoDataType } from '@/types/videoTypes.ts'
+import { VideoData } from '@/types/videoTypes'
 import { useVideoFetch } from '~/composables/useApiFetch'
-const allVideos: Ref<VideoDataType | unknown> = ref()
-const commercialVideos: Ref<VideoDataType | unknown> = ref()
-const naturalVideos: Ref<VideoDataType | unknown> = ref()
-const riverVideos: Ref<VideoDataType | unknown> = ref()
-const feederVideos: Ref<VideoDataType | unknown> = ref()
-const floatVideos: Ref<VideoDataType | unknown> = ref()
+const allVideos: Ref<VideoData[] | null> = ref(null)
+const commercialVideos: Ref<VideoData[] | null> = ref(null)
+const naturalVideos: Ref<VideoData[] | null> = ref(null)
+const riverVideos: Ref<VideoData[] | null> = ref(null)
+const feederVideos: Ref<VideoData[] | null> = ref(null)
+const floatVideos: Ref<VideoData[] | null> = ref(null)
 
 interface limitAndSkip {
   limit: number
@@ -91,16 +115,16 @@ interface limitAndSkip {
 }
 
 interface HomePageVideos {
-  all: VideoDataType[]
-  natural: VideoDataType[]
-  commercial: VideoDataType[]
-  river: VideoDataType[]
-  feeder: VideoDataType[]
-  float: VideoDataType[]
+  all: VideoData[]
+  natural: VideoData[]
+  commercial: VideoData[]
+  river: VideoData[]
+  feeder: VideoData[]
+  float: VideoData[]
 }
 
 const { data } = await useVideoFetch(`/allvideos?limit=6&skip=0`)
-const { all, natural, commercial, river, feeder, float } = (data.value as unknown) as HomePageVideos
+const { all, natural, commercial, river, feeder, float } = data.value as unknown as HomePageVideos
 allVideos.value = all
 commercialVideos.value = commercial
 naturalVideos.value = natural

@@ -1,4 +1,4 @@
-import { ImageLinks } from '@/types/videoTypes.ts'
+import { ImageLinks } from '@/types/videoTypes'
 
 const imageLinks: ImageLinks = {
   stillwater: '33c753_5884f4e5f6da4090a52fbb7df0da5c81~mv2.webp',

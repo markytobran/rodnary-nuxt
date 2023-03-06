@@ -1,4 +1,4 @@
-export interface VideoDataType {
+export type VideoData = {
   title: string
   channelTitle: string
   channelId: string
@@ -12,11 +12,18 @@ export interface VideoDataType {
   subtitles: string[]
   likes: number
   thumbnails: string[]
-  socialLinks: string[]
+  socialLinks: SocialLinks[]
   logoURL: string
   publishedAt: string
   coverImgLink: string
 }
+
+export type SocialLinks = {
+  name: string
+  url: string
+}
+
+export type VideoDataPropType = VideoData[] | null
 
 export enum API {
   SKIP = 0,

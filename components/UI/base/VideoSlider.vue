@@ -33,8 +33,9 @@
   </vueper-slides>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { VueperSlides, VueperSlide } from 'vueperslides'
+import { VideoDataPropType } from '@/types/videoTypes'
 import 'vueperslides/dist/vueperslides.css'
 
 const emit = defineEmits(['fetchVideo'])
@@ -51,7 +52,11 @@ const incrementLimitAndSkip = () => {
 }
 
 const props = defineProps({
-  videos: Array,
+  videos: {
+    type: Array as PropType<VideoDataPropType>,
+    default: [],
+    required: true,
+  },
 })
 
 const breakpoints = {

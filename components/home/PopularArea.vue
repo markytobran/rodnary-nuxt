@@ -16,9 +16,10 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import { VideoDataPropType } from '@/types/videoTypes'
 const props = defineProps({
-  videos: Object,
+  videos: Array as PropType<VideoDataPropType>,
   title: String,
 })
 </script>

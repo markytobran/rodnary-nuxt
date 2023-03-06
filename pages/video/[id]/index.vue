@@ -6,12 +6,12 @@
           <div class="flex">
             <img :src="video?.logoURL" class="h-20 w-20 rounded-full ml-3 mt-4" alt="Logo" />
             <span class="text-white font-bold text-lg capitalize block mt-10 ml-2"> {{ video?.channelTitle }}</span>
-            <ul class="mt-10 ml-20 flex" v-for="video in video?.socialLinks">
-              <IconWrapper :name="video.name" :url="video.url">
-                <IconFacebook v-if="video.name === 'facebook'" />
-                <IconInstagram v-if="video.name === 'instagram'" />
-                <IconWebsite v-if="video.name === 'website'" />
-                <IconYoutube v-if="video.name === 'youtube'" />
+            <ul class="mt-10 ml-20 flex" v-for="link in socialLinks">
+              <IconWrapper :name="link.name" :url="link.url">
+                <IconFacebook v-if="link.name === 'facebook'" />
+                <IconInstagram v-if="link.name === 'instagram'" />
+                <IconWebsite v-if="link.name === 'website'" />
+                <IconYoutube v-if="link.name === 'youtube'" />
               </IconWrapper>
             </ul>
           </div>
@@ -49,17 +49,19 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { VideoDataType } from '~/types/videoTypes'
+import { VideoData } from '~/types/videoTypes'
 import { useVideoFetch } from '~/composables/useApiFetch'
-const relatedVideos: Ref<VideoDataType | null> = ref(null)
+const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params
-const video: Ref<VideoDataType | null> = ref(null)
+const video: Ref<VideoData | null> = ref(null)
+
+const socialLinks = computed(() => video.value?.socialLinks)
 
 onMounted(async () => {
   const { data } = await useVideoFetch(`/${id}`)
   video.value = data.value
 
-  const { data: channelVideos } = await useVideoFetch(`/channels/${video?.value?.channelId}`)
+  const { data: channelVideos } = (await useVideoFetch(`/channels/${video?.value?.channelId}`)) as unknown as VideoData[]
   relatedVideos.value = channelVideos.value
 })
 
