@@ -20,7 +20,7 @@
     </div>
     <div class="w-full lg:w-9/12 mx-auto mt-20 mb-56">
       <div class="ml-2 mt-6">
-        <h3 class="font-bold text-2xl text-slate-100 tracking-wide">{{ title[titleKey.toLowerCase()] }}</h3>
+        <h3 class="font-bold text-2xl text-slate-100 tracking-wide">{{ title }}</h3>
       </div>
       <ClientOnly>
         <div class="grid grid-cols-3 gap-14 mt-4">
@@ -36,7 +36,7 @@ const videos = ref([])
 const route = useRoute()
 const titleKey = ref('')
 
-const title = {
+const titleData = {
   commercial: 'Commercial Venue Fishing',
   natural: 'Natural Venue Fishing',
   river: 'River Fishing',
@@ -44,6 +44,8 @@ const title = {
   natural: 'Natural Venue Fishing',
   float: 'Float Fishing',
 }
+
+const title = computed(() => titleData[titleKey.value])
 
 const links = [
   { name: 'Commercial', path: '/categories?venue=commercial' },
@@ -65,7 +67,7 @@ watch(
     //Set title
     setTitleKey(value)
 
-    const { data } = await useVideoFetch(`/categories/${key}/${value}?limit=12&skip=0`)
+    const { data } = await useVideosFetch(`/categories/${key}/${value}?limit=12&skip=0`)
     videos.value = data.value
   },
   { deep: true, immediate: true }

@@ -17,7 +17,7 @@
           </div>
           <div class="flex flex-col mt-10 ml-5 h-full">
             <div class="flex">
-              <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-5">1 h 27 min</span>
+              <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-5">0 h 00 min</span>
               <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-8">{{ video?.publishedAt }}</span>
               <svg class="-mt-2" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" fill="white" clip-rule="evenodd">
                 <path
@@ -50,22 +50,21 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { VideoData } from '~/types/videoTypes'
-import { useVideoFetch } from '~/composables/useApiFetch'
 const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params
 const video: Ref<VideoData | null> = ref(null)
 
 const socialLinks = computed(() => video.value?.socialLinks)
 
+const description = computed(() => video.value?.description.substring(0, 700) + '...')
+
 onMounted(async () => {
   const { data } = await useVideoFetch(`/${id}`)
   video.value = data.value
 
-  const { data: channelVideos } = (await useVideoFetch(`/channels/${video?.value?.channelId}`)) as unknown as VideoData[]
+  const { data: channelVideos } = await useVideosFetch(`/channels/${video?.value?.channelId}`)
   relatedVideos.value = channelVideos.value
 })
-
-const description = computed(() => video.value?.description.substring(0, 700) + '...')
 </script>
 
 <style scoped>

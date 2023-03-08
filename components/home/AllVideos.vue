@@ -101,7 +101,7 @@
 import type { Ref } from 'vue'
 import { homePageSliderData } from '../../utils/imgUrls'
 import { VideoData } from '@/types/videoTypes'
-import { useVideoFetch } from '~/composables/useApiFetch'
+import { useVideosFetch } from '~/composables/useApiFetch'
 const allVideos: Ref<VideoData[] | null> = ref(null)
 const commercialVideos: Ref<VideoData[] | null> = ref(null)
 const naturalVideos: Ref<VideoData[] | null> = ref(null)
@@ -123,7 +123,7 @@ interface HomePageVideos {
   float: VideoData[]
 }
 
-const { data } = await useVideoFetch(`/allvideos?limit=6&skip=0`)
+const { data } = await useVideosFetch(`/allvideos?limit=6&skip=0`)
 const { all, natural, commercial, river, feeder, float } = data.value as unknown as HomePageVideos
 allVideos.value = all
 commercialVideos.value = commercial
@@ -133,32 +133,32 @@ feederVideos.value = feeder
 floatVideos.value = float
 
 async function fetchAllVideo({ limit, skip }: limitAndSkip) {
-  const { data } = await useVideoFetch(`?limit=${limit}&skip=${skip}`)
+  const { data } = await useVideosFetch(`?limit=${limit}&skip=${skip}`)
   allVideos.value = allVideos.value instanceof Array ? allVideos.value.concat(data.value) : allVideos.value
 }
 
 async function fetchNaturalVideos({ limit, skip }: limitAndSkip) {
-  const { data } = await useVideoFetch(`/categories/venue/natural?limit=${limit}&skip=${skip}`)
+  const { data } = await useVideosFetch(`/categories/venue/natural?limit=${limit}&skip=${skip}`)
   naturalVideos.value = naturalVideos.value instanceof Array ? naturalVideos.value.concat(data.value) : naturalVideos.value
 }
 
 async function fetchCommercialVideos({ limit, skip }: limitAndSkip) {
-  const { data } = await useVideoFetch(`/categories/venue/commercial?limit=${limit}&skip=${skip}`)
+  const { data } = await useVideosFetch(`/categories/venue/commercial?limit=${limit}&skip=${skip}`)
   commercialVideos.value = commercialVideos.value instanceof Array ? commercialVideos.value.concat(data.value) : commercialVideos.value
 }
 
 async function fetchRiverVideos({ limit, skip }: limitAndSkip) {
-  const { data } = await useVideoFetch(`/categories/water/river?limit=${limit}&skip=${skip}`)
+  const { data } = await useVideosFetch(`/categories/water/river?limit=${limit}&skip=${skip}`)
   riverVideos.value = riverVideos.value instanceof Array ? riverVideos.value.concat(data.value) : riverVideos.value
 }
 
 async function fetchFeederVideos({ limit, skip }: limitAndSkip) {
-  const { data } = await useVideoFetch(`/categories/fishing/feeder?limit=${limit}&skip=${skip}`)
+  const { data } = await useVideosFetch(`/categories/fishing/feeder?limit=${limit}&skip=${skip}`)
   feederVideos.value = feederVideos.value instanceof Array ? feederVideos.value.concat(data.value) : feederVideos.value
 }
 
 async function fetchFloatVideos({ limit, skip }: limitAndSkip) {
-  const { data } = await useVideoFetch(`/categories/fishing/float?limit=${limit}&skip=${skip}`)
+  const { data } = await useVideosFetch(`/categories/fishing/float?limit=${limit}&skip=${skip}`)
   floatVideos.value = floatVideos.value instanceof Array ? floatVideos.value.concat(data.value) : floatVideos.value
 }
 </script>

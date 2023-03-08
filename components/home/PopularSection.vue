@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type { VideoData } from '@/types/videoTypes'
-import { useVideoFetch } from '~/composables/useApiFetch'
+import { useVideosFetch } from '~/composables/useApiFetch'
 
 interface HomeTopVideos {
   data: {
@@ -21,5 +21,5 @@ interface HomeTopVideos {
   }
 }
 
-const { data: videos } = (await useVideoFetch(`/topvideos?limit=3&skip=0`)) as unknown as HomeTopVideos
+const { data: videos } = (await useVideosFetch(`/topvideos?limit=3&skip=0`)) as unknown as HomeTopVideos
 </script>
