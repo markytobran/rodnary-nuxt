@@ -31,21 +31,30 @@
   </section>
 </template>
 
-<script setup>
-const videos = ref([])
+<script lang="ts" setup>
+import type { Ref } from 'vue'
+import { VideoData } from '@/types/videoTypes'
+const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
-const titleKey = ref('')
+const titleKey: Ref<string> = ref('')
+
+interface TitleData {
+  commercial: string
+  natural: string
+  river: string
+  feeder: string
+  float: string
+}
 
 const titleData = {
   commercial: 'Commercial Venue Fishing',
   natural: 'Natural Venue Fishing',
   river: 'River Fishing',
   feeder: 'Feeder Fishing',
-  natural: 'Natural Venue Fishing',
   float: 'Float Fishing',
 }
 
-const title = computed(() => titleData[titleKey.value])
+const title = computed(() => titleData[titleKey.value as keyof TitleData])
 
 const links = [
   { name: 'Commercial', path: '/categories?venue=commercial' },
@@ -55,7 +64,7 @@ const links = [
   { name: 'Float', path: '/categories?fishing=float' },
 ]
 
-const setTitleKey = (value) => {
+const setTitleKey = (value: string) => {
   titleKey.value = value.toLowerCase()
 }
 
@@ -65,7 +74,7 @@ watch(
     const [key, value] = Object.entries(query)[0]
 
     //Set title
-    setTitleKey(value)
+    setTitleKey(value as string)
 
     const { data } = await useVideosFetch(`/categories/${key}/${value}?limit=12&skip=0`)
     videos.value = data.value
