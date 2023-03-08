@@ -34,6 +34,7 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import { VideoData } from '@/types/videoTypes'
+import { useVideosFetch } from '~/composables/useVideoApiFetch'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const titleKey: Ref<string> = ref('')

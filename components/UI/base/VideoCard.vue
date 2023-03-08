@@ -63,8 +63,6 @@
 </template>
 
 <script setup lang="ts">
-import useImageUrl from '~/composables/useImageUrl'
-
 const props = defineProps({
   video: Object,
   showDescription: Boolean,

@@ -101,7 +101,7 @@
 import type { Ref } from 'vue'
 import { homePageSliderData } from '../../utils/imgUrls'
 import { VideoData } from '@/types/videoTypes'
-import { useVideosFetch } from '~/composables/useApiFetch'
+import { useVideosFetch } from '~/composables/useVideoApiFetch'
 const allVideos: Ref<VideoData[] | null> = ref(null)
 const commercialVideos: Ref<VideoData[] | null> = ref(null)
 const naturalVideos: Ref<VideoData[] | null> = ref(null)

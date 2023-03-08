@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type { VideoData } from '@/types/videoTypes'
-import { useVideosFetch } from '~/composables/useApiFetch'
+import { useVideosFetch } from '~/composables/useVideoApiFetch'
 
 interface HomeTopVideos {
   data: {
