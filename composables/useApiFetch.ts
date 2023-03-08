@@ -6,3 +6,10 @@ export const useVideoFetch = (url: string) => {
     baseURL: baseURL + '/videos',
   })
 }
+
+export const useVideosFetch = (url: string) => {
+  const { baseURL } = useRuntimeConfig()
+  return useFetch<VideoData[]>(url, {
+    baseURL: baseURL + '/videos',
+  })
+}
