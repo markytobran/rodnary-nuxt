@@ -10,6 +10,10 @@ body {
   background: #132219;
 }
 
+.carousel-height {
+  height: 410px;
+}
+
 .card-shadow {
   box-shadow: -20px 31px 19px 4px rgba(0, 0, 0, 0.5);
 }

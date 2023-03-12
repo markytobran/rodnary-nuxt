@@ -1,97 +1,36 @@
 <template>
   <section class="min-h-screen md:px-36 xl:px-20 mb-32">
-    <ClientOnly>
+    <div>
+      <h3 class="font-bold text-lg text-slate-100 mb-5 md:mb-10 text-xl md:text-2xl">Popular Videos</h3>
       <div>
-        <h3 class="font-bold text-lg text-slate-100 mb-5 md:mb-10 text-xl md:text-2xl">Popular Videos</h3>
-        <div>
-          <UITitleSlider title="All Videos" url="/search" />
-          <UIBaseVideoSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
-        </div>
+        <UITitleSlider title="All Videos" url="/search" />
+        <UIBaseVideoSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
       </div>
-      <template #fallback>
-        <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-          <div class="content-loading h-full"></div>
-          <div class="content-loading h-full"></div>
-          <div class="content-loading h-full"></div>
-          <div class="content-loading h-full"></div>
-        </div>
-      </template>
-    </ClientOnly>
+    </div>
 
     <div class="-mt-44">
-      <ClientOnly>
-        <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h3>
-        <div class="mt-10">
-          <UITitleSlider title="Natural Venue Fishing" url="/categories/venue/natural" />
-          <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
-        </div>
-        <template #fallback>
-          <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            <div class="content-loading h-full"></div>
-            <div class="content-loading h-full"></div>
-            <div class="content-loading h-full"></div>
-            <div class="content-loading h-full"></div>
-          </div>
-        </template>
-      </ClientOnly>
+      <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h3>
+      <div class="mt-10">
+        <UITitleSlider title="Natural Venue Fishing" url="/categories/venue/natural" />
+        <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
+      </div>
 
       <div class="-mt-44">
-        <ClientOnly>
-          <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
-          <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
-          <template #fallback>
-            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-            </div>
-          </template>
-        </ClientOnly>
+        <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
+        <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
-        <ClientOnly>
-          <UITitleSlider title="River Fishing" url="/categories/water/river" />
-          <UIBaseVideoSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
-          <template #fallback>
-            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-            </div>
-          </template>
-        </ClientOnly>
+        <UITitleSlider title="River Fishing" url="/categories/water/river" />
+        <UIBaseVideoSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
-        <ClientOnly>
-          <UITitleSlider title="Feeder Fishing" url="/categories/fishing/feeder" />
-          <UIBaseVideoSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
-          <template #fallback>
-            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-            </div>
-          </template>
-        </ClientOnly>
+        <UITitleSlider title="Feeder Fishing" url="/categories/fishing/feeder" />
+        <UIBaseVideoSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
-        <ClientOnly>
-          <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
-          <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
-          <template #fallback>
-            <div class="h-48 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-              <div class="content-loading h-full"></div>
-            </div>
-          </template>
-        </ClientOnly>
+        <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
+        <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
       </div>
-      <div class="-mt-20"></div>
       <UIBaseSlider :data="homePageSliderData" />
     </div>
   </section>

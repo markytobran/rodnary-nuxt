@@ -1,4 +1,5 @@
 export type VideoData = {
+  _id: string
   title: string
   channelTitle: string
   channelId: string
