@@ -11,24 +11,24 @@
     <div class="-mt-44">
       <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h3>
       <div class="mt-10">
-        <UITitleSlider title="Natural Venue Fishing" url="/categories/venue/natural" />
+        <UITitleSlider title="Natural Venue Fishing" url="/categories?venue=natural" />
         <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
       </div>
 
       <div class="-mt-44">
-        <UITitleSlider title="Commercial Venue Fishing" url="/categories/venue/commercial" />
+        <UITitleSlider title="Commercial Venue Fishing" url="/categories?venue=commercial" />
         <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
-        <UITitleSlider title="River Fishing" url="/categories/water/river" />
+        <UITitleSlider title="River Fishing" url="/categories?water=river" />
         <UIBaseVideoSlider :videos="riverVideos" @fetch-video="fetchRiverVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
-        <UITitleSlider title="Feeder Fishing" url="/categories/fishing/feeder" />
+        <UITitleSlider title="Feeder Fishing" url="/categories?fishing=feeder" />
         <UIBaseVideoSlider :videos="feederVideos" @fetch-video="fetchFeederVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
-        <UITitleSlider title="Float Fishing" url="/categories/fishing/feeder" />
+        <UITitleSlider title="Float Fishing" url="/categories?fishing=float" />
         <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
       </div>
       <UIBaseSlider :data="homePageSliderData" />
