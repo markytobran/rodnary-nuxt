@@ -61,10 +61,10 @@ const socialLinks = computed(() => video.value?.socialLinks)
 
 const description = computed(() => video.value?.description.substring(0, 700) + '...')
 
-const data = await useVideoFetch(`/${id}`, 'Video not found')
+const data = await useVideoFetch(`/${id}`)
 video.value = data.value
 
-const { data: channelVideos } = await useVideosFetch(`/channels/${video?.value?.channelId}`)
+const channelVideos = await useVideosFetch(`/channels/${video?.value?.channelId}`)
 relatedVideos.value = channelVideos.value
 </script>
 
