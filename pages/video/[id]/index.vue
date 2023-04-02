@@ -40,8 +40,10 @@
         </div>
       </div>
       <div class="w-full px-5 absolute -bottom-12">
-        <UITitleSlider title="Related Videos" />
-        <UIBaseVideoSlider :videos="relatedVideos" />
+        <client-only>
+          <UITitleSlider title="Related Videos" />
+          <UIBaseVideoSlider :videos="relatedVideos" />
+        </client-only>
       </div>
     </div>
   </section>
@@ -59,13 +61,11 @@ const socialLinks = computed(() => video.value?.socialLinks)
 
 const description = computed(() => video.value?.description.substring(0, 700) + '...')
 
-onMounted(async () => {
-  const { data } = await useVideoFetch(`/${id}`)
-  video.value = data.value
+const data = await useVideoFetch(`/${id}`, 'Video not found')
+video.value = data.value
 
-  const { data: channelVideos } = await useVideosFetch(`/channels/${video?.value?.channelId}`)
-  relatedVideos.value = channelVideos.value
-})
+const { data: channelVideos } = await useVideosFetch(`/channels/${video?.value?.channelId}`)
+relatedVideos.value = channelVideos.value
 </script>
 
 <style scoped>
