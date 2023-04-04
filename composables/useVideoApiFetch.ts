@@ -7,8 +7,12 @@ export async function useVideoFetch(url: string) {
     baseURL: baseURL + '/videos',
   })
 
-  if (error.value) {
+  if (!data.value) {
     showError({ message: 'Video not found', statusCode: 404 })
+  }
+
+  if (error.value) {
+    showError({ message: 'Something went wrong', statusCode: 500 })
   }
 
   return data
