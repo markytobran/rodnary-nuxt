@@ -1,18 +1,12 @@
 <template>
-  <header class="absolute md:relative bottom-0 h-20 md:h-screen w-full z-50">
-    <nav class="bg-primary-color-600 h-full fixed rounded-r-3xl z-20 w-full md:w-40">
-      <NuxtLink to="/" class="mb-32 pt-6 flex justify-center absolute -top-1 left-2 md:left-0 md:relative">
-        <img src="@/assets/img/logo/rodnary-logo.webp" alt="rodnary-logo" class="w-18 h-9 md:w-22 md:h-16" />
+  <header class="fixed bottom-0 z-50 bg-primary-color-600 w-full lg:rounded-r-3xl lg:w-32 2xl:36 lg:top-0">
+    <nav class="flex p-3 gap-3 lg:flex-col">
+      <NuxtLink to="/">
+        <img src="@/assets/img/logo/rodnary-logo.webp" alt="rodnary-logo" class="w-14 lg:w-9/12 lg:mt-2 lg:mb-10 lg:mx-auto" />
       </NuxtLink>
-      <div>
-        <ul class="flex md:flex-col pl-20 md:pl-0">
-          <HeaderNavItem v-for="(path, index) in pathList" :key="index" :path="path" />
-        </ul>
-      </div>
+      <ul class="flex lg:flex-col">
+        <HeaderNavItem path="/" />
+      </ul>
     </nav>
   </header>
 </template>
-
-<script setup>
-const pathList = ['/', '/about']
-</script>

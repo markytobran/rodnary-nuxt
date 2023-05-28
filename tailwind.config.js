@@ -14,6 +14,9 @@ module.exports = {
       width: {
         84: '22rem',
       },
+      height: {
+        100: '26rem',
+      },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },

@@ -1,8 +1,6 @@
 <template>
-  <div class="grid grid-cols-12">
-    <HeaderNav class="col-span-1" />
-    <main class="col-span-12 md:col-span-11">
-      <slot />
-    </main>
-  </div>
+  <HeaderNav />
+  <main class="lg:pl-20 2xl:pl-24">
+    <slot />
+  </main>
 </template>

@@ -2,7 +2,7 @@
   <div
     :class="
       showDescription
-        ? 'h-96 rounded-lg video-card cursor-pointer video-card-effect'
+        ? 'h-100 rounded-lg video-card cursor-pointer video-card-effect'
         : 'h-44 rounded-lg video-card cursor-pointer video-card-without-description'
     "
   >
@@ -31,8 +31,8 @@
       :to="dynamicVideoRoute"
       :class="
         showDescription
-          ? 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex'
-          : 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex video-card-description-hover-effect'
+          ? 'h-64 w-full bg-primary-color-600 rounded-lg -mt-1 flex'
+          : 'h-64 w-full bg-primary-color-600 rounded-lg -mt-1 flex video-card-description-hover-effect'
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
@@ -100,7 +100,7 @@ function togglePictureToIframe() {
 <style scoped>
 .video-card {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.4);
-  transform: translateY(20%);
+  transform: translateY(12%);
   transition: all 0.3s;
 }
 
@@ -110,7 +110,7 @@ function togglePictureToIframe() {
 
 .video-card-effect:hover {
   box-shadow: 0 54px 99px rgba(0 0 0 / 70%);
-  transform: scale(1.08);
+  transform: scale(1.03);
 }
 
 .video-card-without-description:hover {

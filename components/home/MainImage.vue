@@ -1,5 +1,5 @@
 <template>
-  <section class="h-screen relative -ml-24">
+  <section class="h-screen relative">
     <picture>
       <source srcset="@/assets/img/home-page/home-background-mobile.webp" media="(max-width: 600px)" />
       <source srcset="@/assets/img/home-page/home-background-tablet.webp" media="(max-width: 991px)" />
