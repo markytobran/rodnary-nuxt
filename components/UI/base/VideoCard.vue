@@ -1,11 +1,5 @@
 <template>
-  <div
-    :class="
-      showDescription
-        ? 'h-96 rounded-lg video-card cursor-pointer video-card-effect'
-        : 'h-44 rounded-lg video-card cursor-pointer video-card-without-description'
-    "
-  >
+  <div :class="videoCardClasses" @touchstart="touchStart" @touchend="touchEnd">
     <div v-if="!showYoutubeVideo" class="h-44 w-full rounded-lg relative z-40 overflow-hidden" @click="togglePictureToIframe">
       <img :src="video?.coverImgLink" class="w-full h-full" loading="lazy" draggable="false" />
       <span
@@ -35,13 +29,11 @@
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
-        <div class="flex relative">
-          <NuxtLink :to="dynamicVideoRoute">
-            <h1 class="text-gray-100 pb-4 pt-1 font-bold w-5/6 text-left underline">
-              {{ reducedTitle }}
-            </h1>
-          </NuxtLink>
-        </div>
+        <NuxtLink :to="dynamicVideoRoute">
+          <h1 class="text-gray-100 pb-4 pt-1 font-bold w-5/6 text-left underline">
+            {{ reducedTitle }}
+          </h1>
+        </NuxtLink>
         <p class="text-gray-100 text-xs font-light pb-5 text-left break-words">
           {{ reducedDescription }}
         </p>
@@ -70,6 +62,7 @@ const props = defineProps({
 })
 
 const showYoutubeVideo = ref(false)
+const isTouchOn = ref(false)
 const isSubtitle = props.video?.subtitles.length > 0
 
 const dynamicVideoRoute = computed(() => `/video/${props.video?._id}`)
@@ -93,8 +86,22 @@ const isNewVideo = computed(() => {
   return sub <= week
 })
 
+const videoCardClasses = computed(() => {
+  const touchClass = isTouchOn.value ? ' touch' : ''
+  if (props.showDescription) 'h-96 rounded-lg video-card cursor-pointer video-card-effect' + touchClass
+  return 'h-44 rounded-lg video-card cursor-pointer video-card-without-description' + touchClass
+})
+
 function togglePictureToIframe() {
   showYoutubeVideo.value = true
+}
+
+function touchStart() {
+  isTouchOn.value = true
+}
+
+function touchEnd() {
+  isTouchOn.value = false
 }
 </script>
 
@@ -105,19 +112,6 @@ function togglePictureToIframe() {
   transition: all 0.3s;
 }
 
-.video-card:hover {
-  z-index: 50;
-}
-
-.video-card-effect:hover {
-  box-shadow: 0 54px 99px rgba(0 0 0 / 70%);
-  transform: scale(1.03);
-}
-
-.video-card-without-description:hover {
-  transform: translateY(-0%);
-}
-
 .video-card-description-hover-effect {
   transform: translateY(-80%);
   opacity: 0;
@@ -125,13 +119,44 @@ function togglePictureToIframe() {
   transition: all 0.3s linear;
 }
 
-.video-card:hover .video-card-description-hover-effect {
+.video-card.touch {
+  z-index: 50;
+}
+
+.video-card.touch {
+  box-shadow: 0 54px 99px rgba(0 0 0 / 70%);
+  transform: scale(1.03);
+}
+
+.video-card-without-description.touch {
+  transform: translateY(-0%);
+}
+.video-card.touch .video-card-description-hover-effect {
   opacity: 1;
   transform: translateY(0%);
 }
 
 @media (max-width: 768px) {
   .video-card {
+    transform: translateY(0%);
+  }
+}
+
+@media (hover: hover) {
+  .video-card:hover {
+    z-index: 50;
+  }
+
+  .video-card-effect:hover {
+    box-shadow: 0 54px 99px rgba(0 0 0 / 70%);
+    transform: scale(1.03);
+  }
+
+  .video-card-without-description:hover {
+    transform: translateY(-0%);
+  }
+  .video-card:hover .video-card-description-hover-effect {
+    opacity: 1;
     transform: translateY(0%);
   }
 }
