@@ -1,5 +1,5 @@
 <template>
-  <div :class="videoCardClasses" @touchstart="touchStart" @touchend="touchEnd">
+  <div :class="videoCardClasses" @click="touchStart">
     <div v-if="!showYoutubeVideo" class="h-44 w-full rounded-lg relative z-40 overflow-hidden" @click="togglePictureToIframe">
       <img :src="video?.coverImgLink" class="w-full h-full" loading="lazy" draggable="false" />
       <span
@@ -97,11 +97,7 @@ function togglePictureToIframe() {
 }
 
 function touchStart() {
-  isTouchOn.value = true
-}
-
-function touchEnd() {
-  isTouchOn.value = false
+  isTouchOn.value = !isTouchOn.value
 }
 </script>
 
