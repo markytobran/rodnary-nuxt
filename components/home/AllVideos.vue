@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="-mt-44">
+    <div class="-mt-44 mb-36">
       <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h3>
       <div class="mt-2">
         <UITitleSlider title="Natural Venue Fishing" url="/categories?venue=natural" />
@@ -31,7 +31,7 @@
         <UITitleSlider title="Float Fishing" url="/categories?fishing=float" />
         <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
       </div>
-      <UIBaseSlider class="-mt-44 mb-36" :data="homePageSliderData" />
+      <UIBaseSlider class="-mt-44" :data="homePageSliderData" />
     </div>
   </section>
 </template>
