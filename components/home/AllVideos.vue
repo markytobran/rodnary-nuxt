@@ -1,7 +1,7 @@
 <template>
-  <section class="min-h-screen md:px-36 xl:px-20 mb-32">
+  <section class="min-h-screen px-5 md:px-36 xl:px-20">
     <div>
-      <h3 class="font-bold text-lg text-slate-100 mb-5 md:mb-10 text-xl md:text-2xl">Popular Videos</h3>
+      <h3 class="font-bold text-lg text-slate-100 mb-2 md:mb-10 text-xl md:text-2xl">Popular Videos</h3>
       <div>
         <UITitleSlider title="All Videos" url="/search" />
         <UIBaseVideoSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
@@ -10,7 +10,7 @@
 
     <div class="-mt-44">
       <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h3>
-      <div class="mt-10">
+      <div class="mt-2">
         <UITitleSlider title="Natural Venue Fishing" url="/categories?venue=natural" />
         <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
       </div>
@@ -31,7 +31,7 @@
         <UITitleSlider title="Float Fishing" url="/categories?fishing=float" />
         <UIBaseVideoSlider :videos="floatVideos" @fetch-video="fetchFloatVideos" class="mt-24 md:mt-20" />
       </div>
-      <UIBaseSlider :data="homePageSliderData" />
+      <UIBaseSlider class="-mt-44 mb-36" :data="homePageSliderData" />
     </div>
   </section>
 </template>

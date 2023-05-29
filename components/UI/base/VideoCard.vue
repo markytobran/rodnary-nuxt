@@ -2,7 +2,7 @@
   <div
     :class="
       showDescription
-        ? 'h-100 rounded-lg video-card cursor-pointer video-card-effect'
+        ? 'h-96 rounded-lg video-card cursor-pointer video-card-effect'
         : 'h-44 rounded-lg video-card cursor-pointer video-card-without-description'
     "
   >
@@ -31,8 +31,8 @@
       :to="dynamicVideoRoute"
       :class="
         showDescription
-          ? 'h-64 w-full bg-primary-color-600 rounded-lg -mt-1 flex'
-          : 'h-64 w-full bg-primary-color-600 rounded-lg -mt-1 flex video-card-description-hover-effect'
+          ? 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex'
+          : 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex video-card-description-hover-effect'
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">

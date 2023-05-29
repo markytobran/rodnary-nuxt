@@ -1,6 +1,6 @@
 <template>
   <HomeMainImage />
   <HomePopularSection />
-  <!-- <HomeAllVideos /> -->
+  <HomeAllVideos />
   <!-- <HomeCategoryBoard /> -->
 </template>
