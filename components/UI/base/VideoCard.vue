@@ -27,8 +27,7 @@
       allowfullscreen
       loading="lazy"
     />
-    <NuxtLink
-      :to="dynamicVideoRoute"
+    <div
       :class="
         showDescription
           ? 'h-60 w-full bg-primary-color-600 rounded-lg -mt-1 flex'
@@ -37,9 +36,11 @@
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
         <div class="flex relative">
-          <h1 class="text-gray-100 pb-4 pt-1 font-bold w-5/6 text-left">
-            {{ reducedTitle }}
-          </h1>
+          <NuxtLink :to="dynamicVideoRoute">
+            <h1 class="text-gray-100 pb-4 pt-1 font-bold w-5/6 text-left underline">
+              {{ reducedTitle }}
+            </h1>
+          </NuxtLink>
         </div>
         <p class="text-gray-100 text-xs font-light pb-5 text-left break-words">
           {{ reducedDescription }}
@@ -58,7 +59,7 @@
         />
         <img :src="useImageUrl(props.video?.water)" :alt="video?.waterType" class="h-14 w-14 rounded-full border-4 border-secondary-color" />
       </div>
-    </NuxtLink>
+    </div>
   </div>
 </template>
 
