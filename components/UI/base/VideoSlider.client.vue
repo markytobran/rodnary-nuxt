@@ -60,11 +60,11 @@ const props = defineProps({
 })
 
 const breakpoints = {
-  1200: {
+  1300: {
     visibleSlides: 4,
   },
-  800: {
-    visibleSlides: 2,
+  992: {
+    visibleSlides: 3,
   },
   600: {
     visibleSlides: 1,

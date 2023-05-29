@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen px-5 md:px-36 xl:px-20">
+  <section class="min-h-screen px-5 md:px-10 xl:px-20">
     <div>
       <h3 class="font-bold text-lg text-slate-100 mb-2 md:mb-10 text-xl md:text-2xl">Popular Videos</h3>
       <div>

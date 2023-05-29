@@ -13,7 +13,7 @@
     </div>
     <iframe
       v-else
-      class="h-44 w-full rounded-lg"
+      class="h-44 w-full rounded-lg relative z-40"
       :src="'https://www.youtube.com/embed/' + video?.videoID + '?autoplay=1'"
       title="YouTube video player"
       frameborder="0"
