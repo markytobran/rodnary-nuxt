@@ -10,7 +10,7 @@
       v-for="(video, index) in videos"
       :key="index"
       :video="video"
-      :show-description="true"
+      show-description
       class="max-w-[350px] mx-auto mb-20 xl:mb-0 xl:first:mt-5 xl:last:mt-16"
     />
   </div>

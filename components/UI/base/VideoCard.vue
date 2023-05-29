@@ -1,5 +1,5 @@
 <template>
-  <div :class="videoCardClasses" @click="touchStart">
+  <div :class="videoCardClasses" @click="onClickHandler">
     <div v-if="!showYoutubeVideo" class="h-44 w-full rounded-lg relative z-40 overflow-hidden" @click="togglePictureToIframe">
       <img :src="video?.coverImgLink" class="w-full h-full" loading="lazy" draggable="false" />
       <span
@@ -88,7 +88,7 @@ const isNewVideo = computed(() => {
 
 const videoCardClasses = computed(() => {
   const touchClass = isTouchOn.value ? ' touch' : ''
-  if (props.showDescription) 'h-96 rounded-lg video-card cursor-pointer video-card-effect' + touchClass
+  if (props.showDescription) return 'h-96 rounded-lg video-card cursor-pointer video-card-effect'
   return 'h-44 rounded-lg video-card cursor-pointer video-card-without-description' + touchClass
 })
 
@@ -96,7 +96,7 @@ function togglePictureToIframe() {
   showYoutubeVideo.value = true
 }
 
-function touchStart() {
+function onClickHandler() {
   isTouchOn.value = !isTouchOn.value
 }
 </script>
