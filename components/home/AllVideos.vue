@@ -1,7 +1,7 @@
 <template>
   <section class="min-h-screen px-5 md:px-10 lg:pl-24 lg:pr-16 overflow-x-hidden">
     <div>
-      <h3 class="font-bold text-lg text-slate-100 mb-2 md:mb-10 text-xl md:text-2xl">Popular Videos</h3>
+      <h2 class="font-bold text-slate-100 mb-2 md:mb-10 heading-h2">Popular Videos</h2>
       <div>
         <UITitleSlider title="All Videos" url="/search" />
         <UIBaseVideoSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
@@ -9,7 +9,7 @@
     </div>
 
     <div class="-mt-44 mb-36">
-      <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl">Popular Videos By Category</h3>
+      <h3 class="font-bold heading-h3 text-slate-100 md:mb-8">Popular Videos By Category</h3>
       <div class="mt-2">
         <UITitleSlider title="Natural Venue Fishing" url="/categories?venue=natural" />
         <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />

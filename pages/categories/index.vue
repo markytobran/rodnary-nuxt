@@ -1,15 +1,15 @@
 <template>
-  <section>
+  <section class="px-5">
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl card-shadow">
       <div class="relative">
-        <img src="~/assets/img/category-banner.webp" class="w-full h-1/2" />
+        <img src="~/assets/img/category-banner.webp" class="w-full h-60 md:h-[450px]" />
       </div>
       <div class="h-32 bg-primary-color-600 flex justify-center items-center">
-        <ul class="flex gap-10 text-white font-bold text-lg">
+        <ul class="flex flex-wrap justify-center gap-5 md:gap-10 text-white font-bold text-lg">
           <li v-for="link in links">
             <NuxtLink
               :to="link.path"
-              class="px-4 py-2 border-2 border-primary-color-200 rounded-xl"
+              class="px-4 py-2 text-xs md:text-lg border-2 border-primary-color-200 rounded-xl"
               :class="titleKey === link.name.toLowerCase() ? 'bg-primary-color-300' : ''"
             >
               {{ link.name }}
@@ -18,12 +18,12 @@
         </ul>
       </div>
     </div>
-    <div class="w-full lg:w-9/12 mx-auto mt-20 mb-56">
+    <div class="w-full lg:w-9/12 mx-auto mt-10 lg:mt-20 mb-56">
       <div class="ml-2 mt-6">
-        <h3 class="font-bold text-2xl text-slate-100 tracking-wide">{{ title }}</h3>
+        <h2 class="font-bold heading-h2 text-slate-100 tracking-wide">{{ title }}</h2>
       </div>
       <ClientOnly>
-        <div class="grid grid-cols-3 gap-14 mt-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4">
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
       </ClientOnly>
@@ -77,7 +77,7 @@ watch(
     //Set title
     setTitleKey(value as string)
 
-    const { data } = await useVideosFetch(`/categories/${key}/${value}?limit=12&skip=0`)
+    const data = await useVideosFetch(`/categories/${key}/${value}?limit=12&skip=0`)
     videos.value = data.value
   },
   { deep: true, immediate: true }

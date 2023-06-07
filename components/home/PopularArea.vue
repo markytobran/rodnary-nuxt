@@ -1,9 +1,9 @@
 <template>
   <div class="mt-3 md:mt-10">
-    <h3 class="text-xl md:text-2xl font-semibold flex text-slate-100 mb-5 md:mb-0 2xl:pl-10">
+    <h4 class="font-semibold heading-h4 flex text-slate-100 mb-5 md:mb-0 2xl:pl-10">
       {{ title }}
       <slot />
-    </h3>
+    </h4>
   </div>
   <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:mb-16">
     <UIBaseVideoCard
