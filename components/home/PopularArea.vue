@@ -1,11 +1,11 @@
 <template>
   <div class="mt-3 md:mt-10">
-    <h4 class="font-semibold heading-h4 flex text-slate-100 mb-5 md:mb-0 2xl:pl-10">
+    <h3 class="font-semibold heading-h3 flex text-slate-100 mb-5 md:mb-0 2xl:pl-10">
       {{ title }}
       <slot />
-    </h4>
+    </h3>
   </div>
-  <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:mb-16">
+  <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:mb-28">
     <UIBaseVideoCard
       v-for="(video, index) in videos"
       :key="index"

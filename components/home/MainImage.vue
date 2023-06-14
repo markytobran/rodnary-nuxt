@@ -1,5 +1,5 @@
 <template>
-  <section class="h-screen relative">
+  <section class="relative home-page">
     <picture>
       <source srcset="@/assets/img/home-page/home-background-mobile.webp" media="(max-width: 600px)" />
       <source srcset="@/assets/img/home-page/home-background-tablet.webp" media="(max-width: 991px)" />
@@ -36,6 +36,9 @@
 </template>
 
 <style scoped>
+.home-page {
+  height: 95vh;
+}
 .leafs {
   filter: drop-shadow(22px -12px 7px rgba(0, 0, 0, 0.5));
 }

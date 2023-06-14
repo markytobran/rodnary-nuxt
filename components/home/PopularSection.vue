@@ -1,11 +1,11 @@
 <template>
-  <section class="max-h-fit px-5 lg:px-20 2xl:px-16">
-    <h1 class="heading-h1 font-bold text-slate-100 md:pt-10 2xl:pl-8">Videos we think you'll like</h1>
+  <section class="max-h-fit px-5 lg:px-20 2xl:px-16 pt-10">
+    <h1 class="heading-h1 font-bold text-slate-100 md:pt-10 2xl:pl-8 mb-6">Videos we think you'll like</h1>
     <HomePopularArea title="Commercial" :videos="videos?.commercialVideos">
-      <img src="@/assets/img/home-page/carp.webp" class="h-14 w-20 md:h-20 md:w-32" />
+      <img src="@/assets/img/home-page/carp.webp" class="h-14 w-20 md:h-20 md:w-32 -mt-5 md:-mt-8 ml-5 mb-5" />
     </HomePopularArea>
     <HomePopularArea title="Natural" :videos="videos?.naturalVideos">
-      <img src="@/assets/img/home-page/roach.webp" class="h-12 w-14 md:h-20 md:w-24" />
+      <img src="@/assets/img/home-page/roach.webp" class="h-12 w-14 md:h-20 md:w-24 -mt-5 md:-mt-10 ml-5 mb-5" />
     </HomePopularArea>
   </section>
 </template>

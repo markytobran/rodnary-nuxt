@@ -1,5 +1,5 @@
 <template>
-  <section class="px-5">
+  <section class="px-5" id="coolElement">
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl card-shadow">
       <div class="relative">
         <img src="~/assets/img/category-banner.webp" class="w-full h-60 md:h-[450px]" />
@@ -9,8 +9,8 @@
           <li v-for="link in links">
             <NuxtLink
               :to="link.path"
-              class="px-4 py-2 text-xs md:text-lg border-2 border-primary-color-200 rounded-xl"
-              :class="titleKey === link.name.toLowerCase() ? 'bg-primary-color-300' : ''"
+              class="px-4 py-2 text-xs md:text-lg rounded-xl"
+              :class="titleKey === link.name.toLowerCase() ? 'bg-secondary-color' : 'bg-primary-color-300'"
             >
               {{ link.name }}
             </NuxtLink>
@@ -23,9 +23,12 @@
         <h2 class="font-bold heading-h2 text-slate-100 tracking-wide">{{ title }}</h2>
       </div>
       <ClientOnly>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4 mb-24">
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
+        <UILoader v-if="loading" text="Loading videos" />
+        <UIEndOfVideo v-if="showEndOfResults" />
+        <UIObserver @intersect="intersected" />
       </ClientOnly>
     </div>
   </section>
@@ -38,6 +41,10 @@ import { useVideosFetch } from '~/composables/useVideoApiFetch'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const titleKey: Ref<string> = ref('')
+const LIMIT = 12
+const skip = ref(0)
+const loading = ref(false)
+const showEndOfResults = ref(false)
 
 interface TitleData {
   commercial: string
@@ -69,16 +76,41 @@ const setTitleKey = (value: string) => {
   titleKey.value = value.toLowerCase()
 }
 
+const toggleLoading = () => (loading.value = !loading.value)
+
+const resetSkip = () => (skip.value = 0)
+
+const intersected = async () => {
+  if (!showEndOfResults.value) {
+    toggleLoading()
+    const [key, value] = Object.entries(route.query)[0]
+    skip.value += 12
+    const data = await useVideosFetch(`/categories/${key}/${value}?limit=${LIMIT}&skip=${skip.value}`)
+
+    if (data.value.length) {
+      videos.value = [...videos.value, ...data.value]
+    } else {
+      showEndOfResults.value = true
+    }
+    toggleLoading()
+  }
+}
+
 watch(
   route,
   async ({ query }) => {
+    showEndOfResults.value = false
+    resetSkip()
+    toggleLoading()
+
     const [key, value] = Object.entries(query)[0]
 
     //Set title
     setTitleKey(value as string)
 
-    const data = await useVideosFetch(`/categories/${key}/${value}?limit=12&skip=0`)
+    const data = await useVideosFetch(`/categories/${key}/${value}?limit=${LIMIT}&skip=0`)
     videos.value = data.value
+    toggleLoading()
   },
   { deep: true, immediate: true }
 )

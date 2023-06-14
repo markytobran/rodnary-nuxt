@@ -40,13 +40,13 @@ import 'vueperslides/dist/vueperslides.css'
 
 const emit = defineEmits(['fetchVideo'])
 
-const limit = ref(4)
+const LIMIT = 4
 const skip = ref(0)
 
 const incrementLimitAndSkip = () => {
   skip.value += 4
   emit('fetchVideo', {
-    limit: limit.value,
+    limit: LIMIT,
     skip: skip.value,
   })
 }
