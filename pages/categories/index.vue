@@ -1,5 +1,5 @@
 <template>
-  <section class="px-5" id="coolElement">
+  <section class="px-5">
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl card-shadow">
       <div class="relative">
         <img src="~/assets/img/category-banner.webp" class="w-full h-60 md:h-[450px]" />
