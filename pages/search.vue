@@ -8,7 +8,7 @@
         <h2 class="font-bold heading-h2 text-slate-100 tracking-wide">Results</h2>
       </div>
       <ClientOnly>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4 mb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4 mb-24">
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
         <UILoader v-if="loading" text="Loading videos" />
@@ -23,9 +23,19 @@ import { VideoData } from '@/types/videoTypes'
 import { useVideosFetch } from '~/composables/useVideoApiFetch'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
+const router = useRouter()
 const loading = ref(false)
 
 const toggleLoading = () => (loading.value = !loading.value)
+
+const redirectToSearchWithQuery = () => {
+  if (!route.query.q) {
+    router.push('/search?q=')
+  }
+}
+
+//Redirect
+onBeforeMount(redirectToSearchWithQuery)
 
 watch(
   route,

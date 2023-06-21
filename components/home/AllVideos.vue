@@ -3,7 +3,7 @@
     <div>
       <h2 class="font-bold text-slate-100 mb-2 md:mb-10 heading-h2">Popular Videos</h2>
       <div>
-        <UITitleSlider title="All Videos" url="/search" />
+        <UITitleSlider title="All Videos" url="/search?q=" />
         <UIBaseVideoSlider :videos="allVideos" @fetch-video="fetchAllVideo" class="mt-24 md:mt-20" />
       </div>
     </div>
