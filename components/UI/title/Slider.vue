@@ -2,7 +2,7 @@
   <div class="-mb-16 md:-mb-20 font-bold text-lg text-slate-100 tracking-wide">
     <span class="text-lime-600 mr-3">rodnary</span>
     <span class="heading-h4 mr-3">{{ title }}</span>
-    <NuxtLink class="text-secondary-color text-base cursor-pointer relative z-40" :to="url"> See more </NuxtLink>
+    <NuxtLink class="text-secondary-color text-base cursor-pointer relative z-40" :to="url" v-if="url"> See more </NuxtLink>
   </div>
 </template>
 
