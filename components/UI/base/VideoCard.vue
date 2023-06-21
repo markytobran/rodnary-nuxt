@@ -65,7 +65,7 @@ const showYoutubeVideo = ref(false)
 const isTouchOn = ref(false)
 const isSubtitle = props.video?.subtitles.length > 0
 
-const dynamicVideoRoute = computed(() => `/video/${props.video?._id}`)
+const dynamicVideoRoute = computed(() => `/videos/${props.video?._id}`)
 
 const reducedTitle = computed(() => props.video?.title.substring(0, 52))
 
