@@ -6,14 +6,10 @@
         v-model="searchText"
         placeholder="What do you want to watch?"
         class="border-t-2 border-l-2 border-b-2 h-14 py-3 px-4 w-full bg-transparent rounded-l-full outline-none text-white cursor-pointer"
-        @keydown.enter.exact.prevent="searchSubmit"
+        @keydown.enter.prevent="searchSubmit"
       />
-      <button
-        v-if="showDeleteBtn"
-        class="absolute top-1/2 right-3 md:right-6 -translate-y-1/2 text-white text-xl md:text-2xl"
-        @click="resetInputField"
-      >
-        X
+      <button v-if="showDeleteBtn" @click="resetInputField" class="absolute top-3 w-8 right-2 my-auto">
+        <IconClose class="text-secondary-color" />
       </button>
     </div>
     <button class="w-20 md:w-24 bg-secondary-color flex justify-center items-center border-2 rounded-r-full" type="submit">
