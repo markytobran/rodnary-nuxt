@@ -4,8 +4,9 @@
       <NuxtLink to="/">
         <img src="@/assets/img/logo/rodnary-logo.webp" alt="rodnary-logo" class="w-14 lg:w-9/12 lg:mt-2 lg:mb-10 lg:mx-auto" />
       </NuxtLink>
-      <ul class="flex lg:flex-col">
-        <HeaderNavItem path="/" />
+      <ul class="flex lg:flex-col gap-4">
+        <HeaderNavItem path="/" icon="home" url="/" />
+        <HeaderNavItem path="/search" url="/search?q=" icon="search" />
       </ul>
     </nav>
   </header>

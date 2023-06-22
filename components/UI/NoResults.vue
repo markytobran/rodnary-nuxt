@@ -1,7 +1,7 @@
 <template>
   <div :class="props.classes">
     <img alt="loading" src="@/assets/img/neting-fish.gif" class="w-[110px] mb-5" />
-    <span class="font-bold text-white text-xl">End of videos</span>
+    <span class="font-bold text-white text-xl">{{ text }}</span>
   </div>
 </template>
 
@@ -11,6 +11,10 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'flex flex-col justify-center items-center',
+  },
+  text: {
+    type: String,
+    required: true,
   },
 })
 </script>

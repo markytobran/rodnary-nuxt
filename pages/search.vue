@@ -12,7 +12,7 @@
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
         <UILoader v-if="loading" text="Loading videos" />
-        <UIEndOfVideo v-if="showEndOfResults" />
+        <UINoResults v-if="showNoResults" text="No results found" />
       </ClientOnly>
     </div>
   </section>
@@ -22,11 +22,12 @@
 import type { Ref } from 'vue'
 import { VideoData } from '@/types/videoTypes'
 import { useVideosFetch } from '~/composables/useVideoApiFetch'
+import VideoSliderClient from '~~/components/UI/base/VideoSlider.client.vue'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const router = useRouter()
 const loading = ref(false)
-const showEndOfResults = ref(false)
+const showNoResults = ref(false)
 
 const toggleLoading = () => (loading.value = !loading.value)
 
@@ -42,7 +43,7 @@ onBeforeMount(redirectToSearchWithQuery)
 watch(
   route,
   async ({ query }) => {
-    showEndOfResults.value = false
+    showNoResults.value = false
     const { q } = query
     toggleLoading()
     const data = await useVideosFetch(`/search?q=` + q)
@@ -50,7 +51,8 @@ watch(
     if (data.value.length) {
       videos.value = data.value
     } else {
-      showEndOfResults.value = true
+      videos.value = []
+      showNoResults.value = true
     }
     toggleLoading()
   },

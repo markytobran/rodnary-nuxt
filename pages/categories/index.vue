@@ -27,7 +27,7 @@
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
         <UILoader v-if="loading" text="Loading videos" />
-        <UIEndOfVideo v-if="showEndOfResults" />
+        <UINoResults v-if="showNoResults" text="End of videos" />
         <UIObserver @intersect="intersected" />
       </ClientOnly>
     </div>
@@ -44,7 +44,7 @@ const titleKey: Ref<string> = ref('')
 const LIMIT = 12
 const skip = ref(0)
 const loading = ref(false)
-const showEndOfResults = ref(false)
+const showNoResults = ref(false)
 
 interface TitleData {
   commercial: string
@@ -81,7 +81,7 @@ const toggleLoading = () => (loading.value = !loading.value)
 const resetSkip = () => (skip.value = 0)
 
 const intersected = async () => {
-  if (!showEndOfResults.value) {
+  if (!showNoResults.value) {
     toggleLoading()
     const [key, value] = Object.entries(route.query)[0]
     skip.value += 12
@@ -90,7 +90,7 @@ const intersected = async () => {
     if (data.value.length) {
       videos.value = [...videos.value, ...data.value]
     } else {
-      showEndOfResults.value = true
+      showNoResults.value = true
     }
     toggleLoading()
   }
@@ -99,7 +99,7 @@ const intersected = async () => {
 watch(
   route,
   async ({ query }) => {
-    showEndOfResults.value = false
+    showNoResults.value = false
     resetSkip()
     toggleLoading()
 
