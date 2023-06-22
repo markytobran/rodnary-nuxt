@@ -4,7 +4,7 @@
       <input
         type="text"
         v-model="searchText"
-        placeholder="What do you want to watch?"
+        placeholder="Carps, Baits, Tackles and More"
         class="border-t-2 border-l-2 border-b-2 h-14 py-3 px-4 w-full bg-transparent rounded-l-full outline-none text-white cursor-pointer"
         @keydown.enter.prevent="searchSubmit"
       />
