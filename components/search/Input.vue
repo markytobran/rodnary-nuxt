@@ -1,5 +1,5 @@
 <template>
-  <form class="flex mx-auto w-full md:w-1/2" @submit.submit="searchSubmit">
+  <form class="flex mx-auto w-full md:w-1/2" @submit.prevent="searchSubmit">
     <div class="relative w-full">
       <input
         type="text"
