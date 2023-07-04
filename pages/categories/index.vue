@@ -87,7 +87,7 @@ const intersected = async () => {
     skip.value += 12
     const data = await useVideosFetch(`/categories/${key}/${value}?limit=${LIMIT}&skip=${skip.value}`)
 
-    if (data.value.length) {
+    if (data.value && data.value.length) {
       videos.value = [...videos.value, ...data.value]
     } else {
       showNoResults.value = true

@@ -22,12 +22,13 @@
 import type { Ref } from 'vue'
 import { VideoData } from '@/types/videoTypes'
 import { useVideosFetch } from '~/composables/useVideoApiFetch'
-import VideoSliderClient from '~~/components/UI/base/VideoSlider.client.vue'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const router = useRouter()
 const isLoading = ref(false)
 const showNoResults = ref(false)
+const LIMIT = 12
+const skip = ref(0)
 
 const toggleLoading = () => (isLoading.value = !isLoading.value)
 
@@ -46,9 +47,11 @@ watch(
     showNoResults.value = false
     const { q } = query
     toggleLoading()
-    const data = await useVideosFetch(`/search?q=` + q)
+    skip.value += 12
 
-    if (data.value.length) {
+    const data = await useVideosFetch(`/search?q=${q}?limit=${LIMIT}&skip=${skip.value}`)
+
+    if (data.value && data.value.length) {
       videos.value = data.value
     } else {
       videos.value = []
