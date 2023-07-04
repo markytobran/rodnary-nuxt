@@ -11,8 +11,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4 mb-24">
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
-        <UILoader v-if="loading" text="Loading videos" />
-        <UINoResults v-if="showNoResults" text="No results found" />
+        <UILoader v-if="isLoading" text="Loading videos" />
+        <UINoResults v-if="showNoResults" :text="text" />
+        <UIObserver @intersect="intersected" />
       </ClientOnly>
     </div>
   </section>
@@ -25,10 +26,11 @@ import { useVideosFetch } from '~/composables/useVideoApiFetch'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const router = useRouter()
-const isLoading = ref(false)
-const showNoResults = ref(false)
+const isLoading: Ref<boolean> = ref(false)
+const showNoResults: Ref<boolean> = ref(false)
 const LIMIT = 12
-const skip = ref(0)
+const skip: Ref<number> = ref(0)
+const text: Ref<string> = ref('No results found')
 
 const toggleLoading = () => (isLoading.value = !isLoading.value)
 
@@ -38,16 +40,38 @@ const redirectToSearchWithQuery = () => {
   }
 }
 
+const resetValues = () => {
+  showNoResults.value = false
+  text.value = 'No results found'
+  skip.value = 0
+}
+
 //Redirect
 onBeforeMount(redirectToSearchWithQuery)
+
+const intersected = async () => {
+  if (!showNoResults.value) {
+    toggleLoading()
+    const { q } = route.query
+    skip.value += 12
+    const data = await useVideosFetch(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
+
+    if (data.value && data.value.length) {
+      videos.value = [...videos.value, ...data.value]
+    } else {
+      text.value = 'End of videos'
+      showNoResults.value = true
+    }
+    toggleLoading()
+  }
+}
 
 watch(
   route,
   async ({ query }) => {
-    showNoResults.value = false
     const { q } = query
+    resetValues()
     toggleLoading()
-    skip.value += 12
 
     const data = await useVideosFetch(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
 
@@ -57,6 +81,7 @@ watch(
       videos.value = []
       showNoResults.value = true
     }
+    skip.value += 12
     toggleLoading()
   },
   { deep: true, immediate: true }
