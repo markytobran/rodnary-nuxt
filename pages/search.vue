@@ -49,7 +49,7 @@ watch(
     toggleLoading()
     skip.value += 12
 
-    const data = await useVideosFetch(`/search?q=${q}?limit=${LIMIT}&skip=${skip.value}`)
+    const data = await useVideosFetch(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
 
     if (data.value && data.value.length) {
       videos.value = data.value
