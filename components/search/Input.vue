@@ -12,7 +12,12 @@
         <IconClose class="text-secondary-color" />
       </button>
     </div>
-    <button class="w-20 md:w-24 bg-secondary-color flex justify-center items-center border-2 rounded-r-full" type="submit">
+    <button
+      class="w-20 md:w-24 flex justify-center items-center border-2 rounded-r-full"
+      type="submit"
+      :disabled="props.isLoading"
+      :class="isLoading ? 'bg-slate-400 cursor-not-allowed' : 'bg-secondary-color cursor-pointer'"
+    >
       <IconMagnifier class="text-white" />
     </button>
   </form>
@@ -23,6 +28,13 @@ const searchText = ref('')
 const showDeleteBtn = computed(() => searchText.value.length > 0)
 const resetInputField = () => (searchText.value = '')
 const router = useRouter()
+const props = defineProps({
+  isLoading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+})
 
 const searchSubmit = () => {
   const encoded = encodeURI(searchText.value)

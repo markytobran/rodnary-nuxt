@@ -1,7 +1,7 @@
 <template>
   <div :class="videoCardClasses" @click="onClickHandler">
     <div v-if="!showYoutubeVideo" class="h-44 w-full rounded-lg relative z-40 overflow-hidden" @click="togglePictureToIframe">
-      <img :src="video?.coverImgLink" class="w-full h-full" loading="lazy" draggable="false" />
+      <img :src="getPicture" loading="lazy" draggable="false" alt="Video cover image" class="w-full h-full" />
       <span
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-12 w-16 ease-in-out duration-100 bg-icon-grey hover:bg-secondary-color rounded-xl flex justify-center items-center"
       >
@@ -84,6 +84,10 @@ const isNewVideo = computed(() => {
   const sub = (today.getTime() - createdAt.getTime()) / 1000
 
   return sub <= week
+})
+
+const getPicture = computed(() => {
+  return props.video.thumbnails.find((el) => el.name === 'medium')?.url
 })
 
 const videoCardClasses = computed(() => {

@@ -1,7 +1,7 @@
 <template>
   <section class="px-5">
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl">
-      <SearchInput />
+      <SearchInput :isLoading="isLoading" />
     </div>
     <div class="w-full lg:w-9/12 mx-auto mt-10 lg:mt-20 mb-56">
       <div class="ml-2 mt-6">
@@ -26,10 +26,10 @@ import VideoSliderClient from '~~/components/UI/base/VideoSlider.client.vue'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const router = useRouter()
-const loading = ref(false)
+const isLoading = ref(false)
 const showNoResults = ref(false)
 
-const toggleLoading = () => (loading.value = !loading.value)
+const toggleLoading = () => (isLoading.value = !isLoading.value)
 
 const redirectToSearchWithQuery = () => {
   if (!route.query.q) {
