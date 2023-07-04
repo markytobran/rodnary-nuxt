@@ -1,5 +1,5 @@
 <template>
-  <section class="px-5">
+  <section class="px-5 relative">
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl card-shadow">
       <div class="relative">
         <img src="~/assets/img/category-banner.webp" class="w-full h-60 md:h-[450px]" />
@@ -31,6 +31,7 @@
         <UIObserver @intersect="intersected" />
       </ClientOnly>
     </div>
+    <UIScrollUp v-if="showScrollUp" @scrollToTop="showScrollUp = false" />
   </section>
 </template>
 
@@ -45,6 +46,7 @@ const LIMIT = 12
 const skip = ref(0)
 const loading = ref(false)
 const showNoResults = ref(false)
+const showScrollUp: Ref<boolean> = ref(false)
 
 interface TitleData {
   commercial: string
@@ -83,8 +85,10 @@ const resetSkip = () => (skip.value = 0)
 const intersected = async () => {
   if (!showNoResults.value) {
     toggleLoading()
+    showScrollUp.value = true
     const [key, value] = Object.entries(route.query)[0]
     skip.value += 12
+
     const data = await useVideosFetch(`/categories/${key}/${value}?limit=${LIMIT}&skip=${skip.value}`)
 
     if (data.value && data.value.length) {

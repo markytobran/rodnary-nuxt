@@ -1,5 +1,5 @@
 <template>
-  <section class="px-5">
+  <section class="px-5 relative">
     <div class="w-full lg:w-9/12 mx-auto mt-10 overflow-hidden rounded-xl">
       <SearchInput :isLoading="isLoading" />
     </div>
@@ -16,6 +16,7 @@
         <UIObserver @intersect="intersected" />
       </ClientOnly>
     </div>
+    <UIScrollUp v-if="showScrollUp" @scrollToTop="showScrollUp = false" />
   </section>
 </template>
 
@@ -31,8 +32,7 @@ const showNoResults: Ref<boolean> = ref(false)
 const LIMIT = 12
 const skip: Ref<number> = ref(0)
 const text: Ref<string> = ref('No results found')
-
-const toggleLoading = () => (isLoading.value = !isLoading.value)
+const showScrollUp: Ref<boolean> = ref(false)
 
 const redirectToSearchWithQuery = () => {
   if (!route.query.q) {
@@ -51,7 +51,8 @@ onBeforeMount(redirectToSearchWithQuery)
 
 const intersected = async () => {
   if (!showNoResults.value) {
-    toggleLoading()
+    showScrollUp.value = true
+    isLoading.value = true
     const { q } = route.query
     skip.value += 12
     const data = await useVideosFetch(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
@@ -62,7 +63,7 @@ const intersected = async () => {
       text.value = 'End of videos'
       showNoResults.value = true
     }
-    toggleLoading()
+    isLoading.value = false
   }
 }
 
@@ -71,7 +72,7 @@ watch(
   async ({ query }) => {
     const { q } = query
     resetValues()
-    toggleLoading()
+    isLoading.value = true
 
     const data = await useVideosFetch(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
 
@@ -82,7 +83,7 @@ watch(
       showNoResults.value = true
     }
     skip.value += 12
-    toggleLoading()
+    isLoading.value = false
   },
   { deep: true, immediate: true }
 )
