@@ -46,3 +46,9 @@ export interface ImageLinks {
   'tackle review': string
   HUN: string
 }
+
+export interface BrandLinks {
+  'MAP fishing': string
+  Daiwa: string
+  'Free Spirit': string
+}

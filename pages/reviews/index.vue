@@ -5,6 +5,7 @@
       <NuxtLink to="/reviews/create" class="px-4 py-2 text-xs md:text-lg rounded-xl bg-secondary-color text-white font-bold">
         Upload new review
       </NuxtLink>
+      <ReviewCard v-for="review in reviews" :key="review._id" v-bind="review" />
     </div>
   </section>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-5 mb-5">
     <span class="text-xl font-bold" :class="generateColor(index + 1)">{{ index + 1 }}</span>
-    <img :src="imgSrc" :alt="alt" class="w-14 h-14" />
+    <img :src="imgSrc" :alt="fish" class="w-14 h-14" />
     <p class="flex flex-col">
       <span class="font-bold">{{ weight }} kg</span>
       <span class="font-bold">{{ catchLocation }}</span>
@@ -19,7 +19,7 @@ defineProps({
     type: String,
     required: true,
   },
-  alt: {
+  fish: {
     type: String,
     required: true,
   },
