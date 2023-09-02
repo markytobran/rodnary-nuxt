@@ -1,7 +1,7 @@
 <template>
   <section class="h-full w-full mt-3 flex justify-center">
     <div class="w-full md:max-w-[1100px] rounded-lg dark-green-background mb-10">
-      <h1 class="heading-h1 text-white mt-5 ml-10">Add a new gear review</h1>
+      <h1 class="heading-h1 text-white mt-5 ml-10">Tell us more about your favourite fishing gear</h1>
       <form method="POST" class="w-full mt-10 px-10 text-white mb-10 flex flex-col gap-6" @submit.prevent="postData">
         <label class="flex cursor-pointer">
           <span class="text-size-5 font-bold w-1/2 my-auto">Gear type*:</span>
@@ -53,7 +53,7 @@
           <input type="file" name="image" @change="handleFileInputChange" />
           <img v-if="reviewData.imgSrc" :src="reviewData.imgSrc" alt="Review" width="300" height="300" />
         </div>
-        <button class="text-bold bg-secondary-color rounded-lg h-10 font-bold w-[300px] mt-10">Save review</button>
+        <button class="text-bold bg-secondary-color rounded-lg h-10 font-bold w-[300px] mt-10 text-primary-color-800">Save review</button>
       </form>
     </div>
   </section>

@@ -1,7 +1,7 @@
 <template>
   <section class="h-full w-full mt-3 flex justify-center">
     <div class="w-full md:max-w-[1100px] rounded-lg dark-green-background mb-10">
-      <h1 class="heading-h1 text-white mt-5 ml-10">Add your most recent catch</h1>
+      <h1 class="heading-h1 text-white mt-5 ml-10">Register your dream fish</h1>
       <form method="POST" class="w-full mt-10 px-10 text-white mb-10 flex flex-col gap-6" @submit.prevent="postData">
         <p class="text-size-5 font-bold">Add your most recent catch or edit and update pictures of your older catch.</p>
         <label class="flex cursor-pointer">
@@ -124,7 +124,7 @@
             <p class="mt-auto">I accept the Diary catch upload conditions</p>
           </div>
         </div>
-        <button class="text-bold bg-secondary-color rounded-lg h-10 font-bold w-[300px] mt-10">Save catch</button>
+        <button class="text-bold bg-secondary-color rounded-lg h-10 font-bold w-[300px] mt-10 text-primary-color-800">Save catch</button>
       </form>
     </div>
   </section>
