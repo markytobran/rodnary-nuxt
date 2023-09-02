@@ -1,6 +1,6 @@
 <template>
   <section class="h-full w-full mt-3 flex justify-center flex-column relative">
-    <div class="w-11/12 rounded-lg details-section relative video-container">
+    <div class="w-11/12 rounded-lg dark-green-background relative video-container">
       <div class="flex pl-3">
         <div class="w-1/2 flex flex-col pt-3">
           <div class="flex">
@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { VideoData } from '~/types/videoTypes'
-import { useVideosFetch, useVideoFetch } from '~/composables/useVideoApiFetch'
+import { useGetVideos, useGetVideo } from '~/composables/useVideoApi'
 const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params
 const video: Ref<VideoData | null> = ref(null)
@@ -61,18 +61,14 @@ const socialLinks = computed(() => video.value?.socialLinks)
 
 const description = computed(() => video.value?.description.substring(0, 700) + '...')
 
-const data = await useVideoFetch(`/${id}`)
+const data = await useGetVideo(`/${id}`)
 video.value = data.value
 
-const channelVideos = await useVideosFetch(`/channels/${video?.value?.channelId}`)
+const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
 relatedVideos.value = channelVideos.value
 </script>
 
 <style scoped>
-.details-section {
-  background: linear-gradient(#1a2c21, 85%, black);
-}
-
 .video-container {
   height: 120vh;
 }

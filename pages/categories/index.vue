@@ -38,7 +38,7 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import { VideoData } from '@/types/videoTypes'
-import { useVideosFetch } from '~/composables/useVideoApiFetch'
+import { useGetVideos } from '~/composables/useVideoApi'
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const titleKey: Ref<string> = ref('')
@@ -89,7 +89,7 @@ const intersected = async () => {
     const [key, value] = Object.entries(route.query)[0]
     skip.value += 12
 
-    const data = await useVideosFetch(`/categories/${key}/${value}?limit=${LIMIT}&skip=${skip.value}`)
+    const data = await useGetVideos(`/categories/${key}/${value}?limit=${LIMIT}&skip=${skip.value}`)
 
     if (data.value && data.value.length) {
       videos.value = [...videos.value, ...data.value]
@@ -112,7 +112,7 @@ watch(
     //Set title
     setTitleKey(value as string)
 
-    const data = await useVideosFetch(`/categories/${key}/${value}?limit=${LIMIT}&skip=0`)
+    const data = await useGetVideos(`/categories/${key}/${value}?limit=${LIMIT}&skip=0`)
     videos.value = data.value
     toggleLoading()
   },

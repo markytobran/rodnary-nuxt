@@ -12,6 +12,7 @@
     "nuxt": "3.2.3"
   },
   "dependencies": {
+    "vue-flatpickr-component": "^11.0.3",
     "vueperslides": "^3.5.1"
   }
 }

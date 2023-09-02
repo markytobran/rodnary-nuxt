@@ -42,3 +42,11 @@ body {
   @apply animate-pulse;
   @apply rounded-lg;
 }
+
+.dark-green-background {
+  background: linear-gradient(#1a2c21, 85%, black);
+}
+
+.default-form {
+  @apply rounded-lg pl-3 placeholder:text-zinc-400 bg-primary-color-800 text-white font-bold focus:border-2 focus:border-primary-color-300 outline-none;
+}

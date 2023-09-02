@@ -1,11 +1,11 @@
 <template>
   <form class="flex mx-auto w-full md:w-1/2" @submit.prevent="searchSubmit">
     <div class="relative w-full">
-      <input
-        type="text"
+      <UIFormInput
         v-model="searchText"
+        type="text"
         placeholder="Carps, Baits, Tackles and More"
-        class="border-t-2 border-l-2 border-b-2 h-14 py-3 px-4 w-full bg-transparent rounded-l-full outline-none text-white cursor-pointer"
+        classes="border-t-2 border-l-2 border-b-2 h-14 py-3 px-4 w-full bg-transparent rounded-l-full outline-none text-white cursor-pointer"
         @keydown.enter.prevent="searchSubmit"
       />
       <button v-if="showDeleteBtn" @click="resetInputField" class="absolute top-3 w-8 right-2 my-auto">

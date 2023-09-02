@@ -4,7 +4,7 @@
       @click="scrollToTop"
       class="bg-secondary-color cursor-pointer flex justify-center items-center rounded-full z-20 cursor fixed bottom-5 right-10 w-14 h-14"
     >
-      <IconChevronUp />
+      <IconChevronUp width="30" height="30" />
     </span>
   </ClientOnly>
 </template>
