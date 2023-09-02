@@ -18,7 +18,7 @@
             v-model="reviewData.brand"
             required
             default-option="Choose"
-            :options="['Daiwa', 'Shimano', 'Map', 'Middy', 'Free Spirit']"
+            :options="['Daiwa', 'Shimano', 'MAP fishing', 'Middy', 'Free Spirit']"
           />
         </label>
         <label class="flex cursor-pointer relative">
