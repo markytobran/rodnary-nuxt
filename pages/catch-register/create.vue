@@ -1,7 +1,7 @@
 <template>
   <section class="h-full w-full mt-3 flex justify-center">
     <div class="w-full md:max-w-[1100px] rounded-lg dark-green-background mb-10">
-      <h1 class="heading-h1 text-white mt-5 ml-10">Latest catches</h1>
+      <h1 class="heading-h1 text-white mt-5 ml-10">Add your most recent catch</h1>
       <form method="POST" class="w-full mt-10 px-10 text-white mb-10 flex flex-col gap-6" @submit.prevent="postData">
         <p class="text-size-5 font-bold">Add your most recent catch or edit and update pictures of your older catch.</p>
         <label class="flex cursor-pointer">
@@ -107,7 +107,7 @@
             <li>Entries without images (for authenticity) will not be accepted.</li>
             <li>
               If the image is not in line with the guidelines of our site, it will not be displayed. If the fish is displayed in a room, on a balcony,
-              in a kitchen, wrapped in newspaper, hung up, gagged, torn apart, etc., the image MUST NOT BE DISPLAYED!
+              in a kitchen, etc., the image WILL NOT BE DISPLAYED!
             </li>
             <li>Please attach photos that clearly show the fish and the angler holding the fish!</li>
             <li>
