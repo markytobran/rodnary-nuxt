@@ -102,18 +102,15 @@
           <img v-if="catchData.imgSrc" :src="catchData.imgSrc" alt="Catch" width="300" height="300" />
         </div>
         <div>
-          <h2 class="heading-h2 font-bold mb-3">l accept the Diary catch upload conditions:</h2>
+          <h2 class="heading-h2 font-bold mb-3">l accept the Catch register upload conditions:</h2>
           <ul role="list" class="marker:text-secondary-color list-disc pl-5 space-y-3">
             <li>Entries without images (for authenticity) will not be accepted.</li>
             <li>
               If the image is not in line with the guidelines of our site, it will not be displayed. If the fish is displayed in a room, on a balcony,
-              in a kitchen, etc., the image WILL NOT BE DISPLAYED!
+              in a kitchen, etc, the image WILL NOT BE DISPLAYED!
             </li>
             <li>Please attach photos that clearly show the fish and the angler holding the fish!</li>
-            <li>
-              Please ensure that the data is accurate. An 8 kg carp should not have a circumference of 22 cm. It often happens that the weight of the
-              fish in the declaration is 0 kg. These entries should also not appear.
-            </li>
+            <li>Please ensure that the data is accurate.</li>
             <li>
               For other parameters, we ask you to select the options we have already provided. For example: if the bait was an 18mm home made
               strawberry fish boilie, you should list it as a boilie.
@@ -121,7 +118,7 @@
           </ul>
           <div class="flex gap-5 items-center mt-5">
             <input type="checkbox" v-model="catchData.acceptTermsAndConditions" class="h-5 w-5" required />
-            <p class="mt-auto">I accept the Diary catch upload conditions</p>
+            <p class="mt-auto">I accept the Catch register upload conditions</p>
           </div>
         </div>
         <button class="text-bold bg-secondary-color rounded-lg h-10 font-bold w-[300px] mt-10 text-primary-color-800">Save catch</button>
