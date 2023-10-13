@@ -2,7 +2,7 @@
   <li :class="props.name" class="list-none">
     <a
       :href="props.url"
-      class="social-icon no-underline absolute block mr-20 w-14 h-7 bg-white text-left before:bg-slate-200 after:bg-slate-400"
+      class="social-icon no-underline absolute block mr-20 w-10 h-5 md:w-14 md:h-7 bg-white text-left before:bg-slate-200 after:bg-slate-400"
       target="_blank"
     >
       <slot></slot>
@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 const props = defineProps({ name: String, url: String })
 </script>
 

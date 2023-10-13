@@ -1,26 +1,6 @@
 <template>
-  <div :class="videoCardClasses" @click="onClickHandler">
-    <div v-if="!showYoutubeVideo" class="h-44 w-full rounded-lg relative z-40 overflow-hidden" @click="togglePictureToIframe">
-      <img :src="getPicture" loading="lazy" draggable="false" alt="Video cover image" class="w-full h-full" />
-      <span
-        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-12 w-16 ease-in-out duration-100 bg-icon-grey hover:bg-secondary-color rounded-xl flex justify-center items-center"
-      >
-        <IconVideoBtn class="ml-1 h-7 w-7" color="white" />
-      </span>
-      <span v-if="isNewVideo" class="absolute top-5 -right-8 text-xl bg-average-pink text-black font-extrabold rotate-45 w-32 text-center">
-        NEW
-      </span>
-    </div>
-    <iframe
-      v-else
-      class="h-44 w-full rounded-lg relative z-40"
-      :src="'https://www.youtube.com/embed/' + video?.videoID + '?autoplay=1'"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      loading="lazy"
-    />
+  <div :class="videoCardClasses" @pointerdown="onClickHandler">
+    <UIBaseVideoCardVideo :id="video?.videoID" :url="getPicture" :is-new-video="isNewVideo" />
     <div
       :class="
         showDescription
@@ -38,9 +18,8 @@
           {{ reducedDescription }}
         </p>
         <img src="@/assets/img/logo/rodnary-logo.webp" alt="Rodnary-logo" class="h-10 w-18 absolute bottom-3 left-3" />
-        <span class="h-8 w-15 absolute -bottom-2 left-24 text-gray-100 text-xs font-semibold">{{ video?.videoLength }}</span>
         <span class="h-8 w-15 absolute -bottom-2 right-16 text-gray-100 text-xs font-semibold">{{ modifiedTime }}</span>
-        <IconSubtitle v-if="isSubtitle" />
+        <IconSubtitle v-if="isSubtitle" class="absolute bottom-2 right-4" />
       </div>
       <div class="h-full w-1/6 bg-primary-color-200 rounded-lg flex flex-col justify-between items-center pt-3 pb-2">
         <img :src="useImageUrl(props.video?.videoLanguage)" :alt="`${video?.videoLanguage} flag`" class="h-10 w-16 -mt-2" />
@@ -61,7 +40,6 @@ const props = defineProps({
   showDescription: Boolean,
 })
 
-const showYoutubeVideo = ref(false)
 const isTouchOn = ref(false)
 const isSubtitle = props.video?.subtitles.length > 0
 
@@ -96,12 +74,10 @@ const videoCardClasses = computed(() => {
   return 'h-44 rounded-lg video-card cursor-pointer video-card-without-description' + touchClass
 })
 
-function togglePictureToIframe() {
-  showYoutubeVideo.value = true
-}
-
-function onClickHandler() {
-  isTouchOn.value = !isTouchOn.value
+function onClickHandler(event: PointerEvent): void {
+  if (event.pointerType === 'touch') {
+    isTouchOn.value = !isTouchOn.value
+  }
 }
 </script>
 
