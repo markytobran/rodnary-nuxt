@@ -3,7 +3,7 @@
     <picture>
       <source srcset="@/assets/img/home-page/home-background-mobile.webp" media="(max-width: 600px)" />
       <source srcset="@/assets/img/home-page/home-background-tablet.webp" media="(max-width: 991px)" />
-      <img src="@/assets/img/home-page/home-background.webp" alt="title" class="absolute w-full -top-10 md:top-0 h-screen" />
+      <img src="@/assets/img/home-page/home-background.webp" alt="autumn-background" class="absolute w-full -top-10 md:top-0 h-screen" />
     </picture>
     <img
       id="leaf1"
