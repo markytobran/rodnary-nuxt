@@ -9,12 +9,10 @@
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
-        <NuxtLink :to="dynamicVideoRoute">
-          <h1 class="text-gray-100 pb-4 pt-1 font-bold w-5/6 text-left underline">
-            {{ reducedTitle }}
-          </h1>
+        <NuxtLink :to="dynamicVideoRoute" class="text-gray-100 pt-1 font-bold w-5/6 text-left underline">
+          {{ reducedTitle }}
         </NuxtLink>
-        <p class="text-gray-100 text-xs font-light pb-5 text-left break-words">
+        <p class="text-gray-100 text-xs font-light pb-5 mt-4 text-left break-words">
           {{ reducedDescription }}
         </p>
         <img src="@/assets/img/logo/rodnary-logo.webp" alt="Rodnary-logo" class="h-10 w-18 absolute bottom-3 left-3" />
@@ -22,13 +20,9 @@
         <IconSubtitle v-if="isSubtitle" class="absolute bottom-2 right-4" />
       </div>
       <div class="h-full w-1/6 bg-primary-color-200 rounded-lg flex flex-col justify-between items-center pt-3 pb-2">
-        <img :src="useImageUrl(props.video?.videoLanguage)" :alt="`${video?.videoLanguage} flag`" class="h-10 w-16 -mt-2" />
-        <img
-          :src="useImageUrl(props.video?.subFishing)"
-          :alt="video?.subFishingType"
-          class="h-14 w-14 rounded-full border-4 border-secondary-color"
-        />
-        <img :src="useImageUrl(props.video?.water)" :alt="video?.waterType" class="h-14 w-14 rounded-full border-4 border-secondary-color" />
+        <img :src="useImageUrl(video?.videoLanguage)" :alt="`${video?.videoLanguage} flag`" class="h-10 w-16 -mt-2" />
+        <img :src="useImageUrl(video?.subFishing)" alt="Sub fishing icon" class="h-14 w-14 rounded-full border-4 border-secondary-color" />
+        <img :src="useImageUrl(video?.water)" alt="Water icon" class="h-14 w-14 rounded-full border-4 border-secondary-color" />
       </div>
     </div>
   </div>
