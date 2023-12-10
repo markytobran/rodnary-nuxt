@@ -1,4 +1,4 @@
-import { ReviewData } from '~/types/reviewTypes'
+import type { ReviewData } from '~/types/reviewTypes'
 
 export async function usePostReview(url: string, body: any) {
   const { baseURL } = useRuntimeConfig()
