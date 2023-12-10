@@ -16,6 +16,7 @@ export type VideoData = {
   socialLinks: SocialLink[]
   logoURL: string
   publishedAt: string
+  water: string
   coverImgLink: string
 }
 

@@ -1,4 +1,4 @@
-import { BrandLinks } from '@/types/videoTypes'
+import type { BrandLinks } from '@/types/videoTypes'
 
 const brandLinks: BrandLinks = {
   'MAP fishing':

@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { homePageSliderData } from '../../utils/imgUrls'
-import { VideoData } from '@/types/videoTypes'
+import type { VideoData } from '@/types/videoTypes'
 import { useGetVideos } from '~/composables/useVideoApi'
 const allVideos: Ref<VideoData[] | null> = ref(null)
 const commercialVideos: Ref<VideoData[] | null> = ref(null)

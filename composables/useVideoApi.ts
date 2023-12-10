@@ -1,10 +1,10 @@
-import { VideoData } from '~/types/videoTypes'
+import type { VideoData } from '~/types/videoTypes'
 
 export async function useGetVideo(url: string) {
-  const { baseURL } = useRuntimeConfig()
+  const config = useRuntimeConfig()
 
   const { data, error } = await useFetch<VideoData>(url, {
-    baseURL: baseURL + '/videos',
+    baseURL: config.public.baseURL + '/videos',
   })
 
   if (!data.value) {
@@ -19,9 +19,9 @@ export async function useGetVideo(url: string) {
 }
 
 export async function useGetVideos(url: string) {
-  const { baseURL } = useRuntimeConfig()
+  const config = useRuntimeConfig()
   const { data, error } = await useFetch<VideoData[]>(url, {
-    baseURL: baseURL + '/videos',
+    baseURL: config.public.baseURL + '/videos',
   })
 
   if (error.value) {

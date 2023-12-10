@@ -29,7 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { VideoData } from '@/types/videoTypes'
+import type { VideoData } from '@/types/videoTypes'
+import useImageUrl from '~/composables/useImageUrl'
 const props = defineProps({
   video: {
     type: Object as PropType<VideoData>,

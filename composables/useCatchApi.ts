@@ -1,9 +1,9 @@
-import { CatchData } from '~/types/catchTypes'
+import type { CatchData } from '~/types/catchTypes'
 
 export async function usePostCatch(url: string, body: any) {
-  const { baseURL } = useRuntimeConfig()
+  const config = useRuntimeConfig()
   const { data, error } = await useFetch<CatchData>(url, {
-    baseURL: baseURL + '/catches',
+    baseURL: config.public.baseURL + '/catches',
     // @ts-ignore
     method: 'POST',
     body,
@@ -17,9 +17,9 @@ export async function usePostCatch(url: string, body: any) {
 }
 
 export async function useGetCatches(url: string) {
-  const { baseURL } = useRuntimeConfig()
+  const config = useRuntimeConfig()
   const { data, error } = await useFetch<CatchData[]>(url, {
-    baseURL: baseURL + '/catches',
+    baseURL: config.public.baseURL + '/catches',
   })
 
   if (error.value) {

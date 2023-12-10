@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts" setup>
-import { VideoDataPropType } from '@/types/videoTypes'
-const props = defineProps({
+import type { VideoDataPropType } from '@/types/videoTypes'
+
+defineProps({
   videos: Array as PropType<VideoDataPropType>,
   title: String,
 })

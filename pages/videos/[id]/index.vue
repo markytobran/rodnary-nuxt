@@ -67,7 +67,7 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { VideoData } from '~/types/videoTypes'
+import type { VideoData } from '~/types/videoTypes'
 import { useGetVideos, useGetVideo } from '~/composables/useVideoApi'
 const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params

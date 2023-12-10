@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import { VueperSlides, VueperSlide } from 'vueperslides'
-import { VideoDataPropType } from '@/types/videoTypes'
+import type { VideoDataPropType } from '@/types/videoTypes'
 import 'vueperslides/dist/vueperslides.css'
 
 const emit = defineEmits(['fetchVideo'])
