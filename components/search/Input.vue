@@ -26,7 +26,10 @@
 <script setup lang="ts">
 const searchText = ref('')
 const showDeleteBtn = computed(() => searchText.value.length > 0)
-const resetInputField = () => (searchText.value = '')
+const resetInputField = () => {
+  searchText.value = ''
+  router.push('/search?q=')
+}
 const router = useRouter()
 const props = defineProps({
   isLoading: {
