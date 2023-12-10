@@ -8,7 +8,6 @@
         <HeaderNavItem path="/" icon="home" url="/" />
         <HeaderNavItem path="/search" url="/search?q=" icon="search" />
         <HeaderNavItem path="/catch-register" url="/catch-register" icon="catch-register" />
-        <HeaderNavItem path="/reviews" url="/reviews" icon="review" />
       </ul>
     </nav>
   </header>

@@ -11,7 +11,6 @@
 import Home from '~/components/icon/Home.vue'
 import Magnifier from '~/components/icon/Magnifier.vue'
 import Fish from '~/components/icon/Fish.vue'
-import Review from '~/components/icon/Review.vue'
 
 const props = defineProps({
   path: {
@@ -36,8 +35,6 @@ const iconComponent = computed(() => {
       return Magnifier
     case 'catch-register':
       return Fish
-    case 'review':
-      return Review
     default:
       return Home
   }
