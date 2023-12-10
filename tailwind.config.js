@@ -8,7 +8,7 @@ module.exports = {
         'primary-color-600': '#1a2c21',
         'primary-color-800': '#132118',
         'average-pink': '#EB9176',
-        'secondary-color': '#CF6D00',
+        'secondary-color': '#FF8C00',
         'icon-grey': '#424242',
       },
       width: {

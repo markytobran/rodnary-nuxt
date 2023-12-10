@@ -13,13 +13,13 @@ export type VideoData = {
   subtitles: string[]
   likes: number
   thumbnails: string[]
-  socialLinks: SocialLinks[]
+  socialLinks: SocialLink[]
   logoURL: string
   publishedAt: string
   coverImgLink: string
 }
 
-export type SocialLinks = {
+export type SocialLink = {
   name: string
   url: string
 }

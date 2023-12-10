@@ -7,12 +7,13 @@
     slide-multiple
     fixed-height="410px"
     :gap="2"
+    disable-arrows-on-edges
     :breakpoints="breakpoints"
     @next="incrementLimitAndSkip"
   >
     <template #arrow-left>
       <span
-        class="-mt-32 -ml-7 md:-mt-24 md:ml-10 pointer-events-auto bg-secondary-color text-white text-3xl rounded-full block h-12 w-12 flex justify-center items-center"
+        class="-mt-32 -ml-7 md:-mt-24 md:ml-10 pointer-events-auto bg-secondary-color text-white text-3xl rounded-full h-12 w-12 flex justify-center items-center"
       >
         <img src="@/assets/img/icons/arrow.svg" alt="rodnary-logo" class="w-7 -rotate-90 mr-1" />
       </span>
@@ -20,7 +21,7 @@
 
     <template #arrow-right>
       <span
-        class="-mt-32 -mr-7 md:-mt-24 md:mr-10 pointer-events-auto bg-secondary-color text-white text-3xl rounded-full block h-12 w-12 flex justify-center items-center"
+        class="-mt-32 -mr-7 md:-mt-24 md:mr-10 pointer-events-auto bg-secondary-color text-white text-3xl rounded-full h-12 w-12 flex justify-center items-center"
       >
         <img src="@/assets/img/icons/arrow.svg" alt="rodnary-logo" class="w-7 rotate-90 ml-1" />
       </span>
@@ -51,7 +52,7 @@ const incrementLimitAndSkip = () => {
   })
 }
 
-const props = defineProps({
+defineProps({
   videos: {
     type: Array as PropType<VideoDataPropType>,
     default: [],

@@ -1,10 +1,11 @@
 <template>
   <section class="h-full w-full mt-3 flex justify-center flex-column relative pb-48 text-white">
-    <div class="w-11/12 rounded-lg dark-green-background relative h-[170vh] lg:h-[120vh] mt-4">
+    <div class="w-11/12 rounded-lg dark-green-background relative h-[170vh] lg:h-[120vh] mt-4 z-10">
+      <div :style="`background-image: url(${video?.coverImgLink})`" class="absolute top-0 left-0 w-full h-full opacity-10 z-0 bg-cover" />
       <div class="flex flex-col lg:flex-row gap-5 pl-3">
         <div class="w-full lg:w-1/2 flex flex-col pt-3">
           <div class="flex">
-            <img :src="video?.logoURL" class="h-20 w-20 rounded-full ml-3 mt-4" alt="Logo" />
+            <img v-if="video?.logoURL" :src="video?.logoURL" class="h-20 w-20 rounded-full ml-3 mt-4" alt="Logo" />
             <span class="font-bold text-lg capitalize block mt-10 ml-5"> {{ video?.channelTitle }}</span>
             <ul class="mt-10 ml-10 gap-24 hidden lg:grid grid-cols-4">
               <IconWrapper v-for="link in socialLinks" :name="link.name" :url="link.url">
@@ -24,6 +25,7 @@
               <div class="hidden lg:block">
                 <h5 class="font-bold mt-6">{{ video?.title }}</h5>
                 <p class="w-12/12 mt-6 pr-12 font-medium mb-4">{{ description }}</p>
+                <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
                 <div>
                   <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
                   <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
@@ -32,8 +34,8 @@
             </client-only>
           </div>
         </div>
-        <div class="w-full lg:w-1/2 px-3 lg:px-0">
-          <UIBaseVideoCardVideo :id="video?.videoID" :url="video?.coverImgLink" :is-new-video="false" height="h-full" />
+        <div class="w-full lg:w-1/2 px-3 lg:px-0 mt-6 mr-6">
+          <UIBaseVideoCardVideo :id="video?.videoID" :url="video?.coverImgLink" :is-new-video="false" height="h-[250px] md:h-[450px] " />
         </div>
         <client-only>
           <div class="block lg:hidden px-3">
@@ -55,7 +57,7 @@
           </div>
         </client-only>
       </div>
-      <div class="w-full px-5 absolute -bottom-12">
+      <div class="w-full px-5 mt-36">
         <UITitleSlider title="Related Videos" />
         <UIBaseVideoSlider :videos="relatedVideos" />
       </div>
@@ -70,6 +72,7 @@ import { useGetVideos, useGetVideo } from '~/composables/useVideoApi'
 const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params
 const video: Ref<VideoData | null> = ref(null)
+const readMore = ref(false)
 
 const data = await useGetVideo(`/${id}`)
 video.value = data.value
@@ -79,7 +82,13 @@ relatedVideos.value = channelVideos.value
 
 const socialLinks = computed(() => video.value?.socialLinks)
 
-const description = computed(() => video.value?.description.substring(0, 700) + '...')
+const description = computed(() => (readMore.value ? video.value?.description : video.value?.description.substring(0, 750) + '...'))
+
+const showReadMore = computed(() => video.value?.description?.length > 750)
+
+function setReadMore() {
+  readMore.value = !readMore.value
+}
 </script>
 
 <style scoped>

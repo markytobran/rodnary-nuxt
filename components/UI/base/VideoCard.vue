@@ -9,7 +9,7 @@
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
-        <NuxtLink :to="dynamicVideoRoute" class="text-gray-100 pt-1 font-bold w-5/6 text-left underline">
+        <NuxtLink :to="dynamicVideoRoute" class="text-gray-100 pt-1 font-bold w-5/6 text-left underline video-link">
           {{ reducedTitle }}
         </NuxtLink>
         <p class="text-gray-100 text-xs font-light pb-5 mt-4 text-left break-words">
@@ -29,8 +29,12 @@
 </template>
 
 <script setup lang="ts">
+import { VideoData } from '@/types/videoTypes'
 const props = defineProps({
-  video: Object,
+  video: {
+    type: Object as PropType<VideoData>,
+    required: true,
+  },
   showDescription: Boolean,
 })
 
@@ -69,7 +73,8 @@ const videoCardClasses = computed(() => {
 })
 
 function onClickHandler(event: PointerEvent): void {
-  if (event.pointerType === 'touch') {
+  const isVideoLink = event?.target?.classList?.value?.includes('video-link')
+  if (event.pointerType === 'touch' && !isVideoLink) {
     isTouchOn.value = !isTouchOn.value
   }
 }
