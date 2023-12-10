@@ -4,6 +4,7 @@
     <HomePopularArea title="Commercial" :videos="videos?.commercialVideos">
       <img src="@/assets/img/home-page/carp.webp" alt="Carp" class="h-14 w-20 md:h-20 md:w-32 -mt-5 md:-mt-8 ml-5 mb-5" />
     </HomePopularArea>
+    <UIObserver @intersect="$emit('showAllVideos')" />
     <HomePopularArea title="Natural" :videos="videos?.naturalVideos">
       <img src="@/assets/img/home-page/roach.webp" alt="Roach" class="h-12 w-14 md:h-20 md:w-24 -mt-5 md:-mt-10 ml-5 mb-5" />
     </HomePopularArea>
