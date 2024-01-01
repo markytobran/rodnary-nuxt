@@ -58,7 +58,7 @@ const intersected = async () => {
     const data = await useGetVideos(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
 
     if (data.value && data.value.length) {
-      videos.value = [...videos.value, ...data.value]
+      videos.value = [...(videos.value ?? []), ...data.value]
     } else {
       text.value = 'End of videos'
       showNoResults.value = true
