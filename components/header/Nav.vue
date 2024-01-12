@@ -7,7 +7,7 @@
       <ul class="flex lg:flex-col gap-4">
         <HeaderNavItem path="/" icon="home" url="/" aria-label="Home" />
         <HeaderNavItem path="/search" url="/search?q=" icon="search" aria-label="Search" />
-        <HeaderNavItem path="/catch-register" url="/catch-register" icon="catch-register" />
+        <HeaderNavItem path="/catch-register" url="/catch-register" icon="catch-register" aria-label="Catch register" />
       </ul>
     </nav>
   </header>
