@@ -1,6 +1,6 @@
 <template>
   <vueper-slides
-    class="no-shadow"
+    class="no-shadow z-0"
     fixed-height="280px"
     :visible-slides="3"
     :breakpoints="breakpoints"
