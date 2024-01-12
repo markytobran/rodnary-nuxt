@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="to" :class="`${height} w-full rounded-lg relative z-40 overflow-hidden cursor-pointer`">
+  <NuxtLink :to="to" :class="`${height} w-full rounded-lg relative z-40 overflow-hidden cursor-pointer block`">
     <img :src="url" loading="lazy" draggable="false" alt="Video cover image" :class="`${height} w-full`" />
     <span
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-12 w-16 ease-in-out duration-100 bg-icon-grey hover:bg-secondary-color rounded-xl flex justify-center items-center"

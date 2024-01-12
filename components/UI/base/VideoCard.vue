@@ -1,5 +1,5 @@
 <template>
-  <div :class="videoCardClasses" @pointerdown="onClickHandler">
+  <div :class="videoCardClasses">
     <UIBaseVideoCardVideo :id="video?.videoID" :url="getPicture" :is-new-video="isNewVideo" :to="dynamicVideoRoute" />
     <div
       :class="
@@ -39,7 +39,6 @@ const props = defineProps({
   showDescription: Boolean,
 })
 
-const isTouchOn = ref(false)
 const isSubtitle = props.video?.subtitles.length > 0
 
 const dynamicVideoRoute = computed(() => `/videos/${props.video?._id}`)
@@ -68,17 +67,9 @@ const getPicture = computed(() => {
 })
 
 const videoCardClasses = computed(() => {
-  const touchClass = isTouchOn.value ? ' touch' : ''
   if (props.showDescription) return 'h-96 rounded-lg video-card cursor-pointer video-card-effect'
-  return 'h-44 rounded-lg video-card cursor-pointer video-card-without-description' + touchClass
+  return 'h-44 rounded-lg video-card cursor-pointer video-card-without-description'
 })
-
-function onClickHandler(event: PointerEvent): void {
-  const isVideoLink = event?.target?.classList?.value?.includes('video-link')
-  if (event.pointerType === 'touch' && !isVideoLink) {
-    isTouchOn.value = !isTouchOn.value
-  }
-}
 </script>
 
 <style scoped>
