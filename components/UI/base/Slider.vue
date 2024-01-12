@@ -13,7 +13,7 @@
     <vueper-slide v-for="img in data">
       <template #content>
         <NuxtLink :to="img.path" class="cursor-pointer rounded-md">
-          <img loading="lazy" :src="img.imgUrl" class="pointer-events-none rounded-md h-full w-full" />
+          <img loading="lazy" :src="img.imgUrl" class="pointer-events-none rounded-md h-full w-full" alt="Fishing video thumbnail" />
         </NuxtLink>
       </template>
     </vueper-slide>

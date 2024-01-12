@@ -5,8 +5,8 @@
         <img src="@/assets/img/logo/rodnary-logo.webp" alt="rodnary-logo" class="w-14 lg:w-9/12 lg:mt-2 lg:mb-10 lg:mx-auto" />
       </NuxtLink>
       <ul class="flex lg:flex-col gap-4">
-        <HeaderNavItem path="/" icon="home" url="/" />
-        <HeaderNavItem path="/search" url="/search?q=" icon="search" />
+        <HeaderNavItem path="/" icon="home" url="/" aria-label="Home" />
+        <HeaderNavItem path="/search" url="/search?q=" icon="search" aria-label="Search" />
         <HeaderNavItem path="/catch-register" url="/catch-register" icon="catch-register" />
       </ul>
     </nav>
