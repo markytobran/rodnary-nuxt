@@ -5,6 +5,7 @@
     :visible-slides="3"
     :breakpoints="breakpoints"
     autoplay
+    bullets-outside
     :gap="1"
     :touchable="false"
     :arrows="false"
