@@ -1,11 +1,10 @@
 <template>
   <HomeMainImage />
-  <HomePopularSection @showAllVideos="showAllVideos = true" />
-  <LazyHomeAllVideos v-if="showAllVideos" />
+  <HomePopularSection />
+  <LazyHomeAllVideos />
 </template>
 
 <script setup lang="ts">
-const showAllVideos = ref(false)
 useHead({
   title: 'Rodnary',
 })

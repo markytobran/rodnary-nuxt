@@ -1,6 +1,6 @@
 <template>
   <div :class="videoCardClasses" @pointerdown="onClickHandler">
-    <UIBaseVideoCardVideo :id="video?.videoID" :url="getPicture" :is-new-video="isNewVideo" />
+    <UIBaseVideoCardVideo :id="video?.videoID" :url="getPicture" :is-new-video="isNewVideo" :to="dynamicVideoRoute" />
     <div
       :class="
         showDescription
