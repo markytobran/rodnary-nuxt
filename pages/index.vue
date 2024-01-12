@@ -9,5 +9,6 @@
 const showAllVideos = ref(false)
 useHead({
   title: 'Rodnary',
+  meta: [{ name: 'description', content: 'Rodnary home page' }],
 })
 </script>
