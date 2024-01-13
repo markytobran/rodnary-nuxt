@@ -3,6 +3,7 @@
     class="no-shadow z-0"
     fixed-height="280px"
     :visible-slides="3"
+    touchable
     :breakpoints="breakpoints"
     autoplay
     bullets-outside
