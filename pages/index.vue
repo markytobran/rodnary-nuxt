@@ -9,13 +9,14 @@ import type { Ref } from 'vue'
 import { getSessionItem, setSessionItem } from '~/composables/useSessionStorage'
 const showAllVideos: Ref<string> = ref('false')
 
-onMounted(() => {
-  if (getSessionItem('showAllVideos')) showAllVideos.value = getSessionItem('showAllVideos')
-})
-
 useHead({
   title: 'Rodnary',
   meta: [{ name: 'description', content: 'Rodnary home page' }],
+})
+
+onMounted(() => {
+  const displayVideos = getSessionItem('showAllVideos')
+  if (displayVideos) showAllVideos.value = displayVideos
 })
 
 function setAllVideos() {
