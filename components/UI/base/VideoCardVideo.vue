@@ -1,31 +1,17 @@
 <template>
-  <NuxtLink :to="to" :class="`${height} w-full rounded-lg relative z-40 overflow-hidden cursor-pointer block`">
-    <img :src="url" loading="lazy" draggable="false" alt="Video cover image" :class="`${height} w-full`" />
-    <span v-if="isNewVideo" class="absolute top-5 -right-8 text-xl bg-average-pink text-black font-extrabold rotate-45 w-32 text-center"> NEW </span>
-  </NuxtLink>
+  <iframe
+    class="h-[250px] md:h-[450px] w-full z-10"
+    :src="'https://www.youtube.com/embed/' + id"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  />
 </template>
 
 <script lang="ts" setup>
 defineProps({
-  url: {
-    type: String,
-    required: true,
-  },
   id: {
-    type: String,
-    required: true,
-  },
-  isNewVideo: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  height: {
-    type: String,
-    required: false,
-    default: 'h-44',
-  },
-  to: {
     type: String,
     required: true,
   },

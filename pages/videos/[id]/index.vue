@@ -35,14 +35,7 @@
           </div>
         </div>
         <div class="w-full lg:w-1/2 px-3 lg:px-0 mt-6 mr-6 relative">
-          <iframe
-            class="h-[250px] md:h-[450px] w-full z-10"
-            :src="'https://www.youtube.com/embed/' + video?.videoID"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          />
+          <UIBaseVideoCardVideo :id="video?.videoID" />
         </div>
         <client-only>
           <div class="block lg:hidden px-3">
