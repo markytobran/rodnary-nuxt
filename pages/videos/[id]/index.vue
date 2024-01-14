@@ -5,7 +5,7 @@
       <div class="flex flex-col lg:flex-row gap-5 pl-3">
         <div class="w-full lg:w-1/2 flex flex-col pt-3">
           <div class="flex">
-            <img v-if="video?.logoURL" :src="video?.logoURL" class="h-20 w-20 rounded-full ml-3 mt-4" alt="Logo" />
+            <img v-show="video?.logoURL && showLogo" :src="video?.logoURL" class="h-20 w-20 rounded-full ml-3 mt-4" alt="Logo" @error="removeLogo" />
             <span class="font-bold text-lg capitalize block mt-10 ml-5"> {{ video?.channelTitle }}</span>
             <ul class="mt-10 ml-10 gap-24 hidden lg:grid grid-cols-4">
               <IconWrapper v-for="link in socialLinks" :name="link.name" :url="link.url">
@@ -22,7 +22,7 @@
               <IconSubtitle class="-mt-2" />
             </div>
             <client-only>
-              <div class="hidden lg:block">
+              <div class="hidden lg:block relative z-10">
                 <h5 class="font-bold mt-6">{{ video?.title }}</h5>
                 <p class="w-12/12 mt-6 pr-12 font-medium mb-4">{{ description }}</p>
                 <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
@@ -73,6 +73,7 @@ const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params
 const video: Ref<VideoData | null> = ref(null)
 const readMore = ref(false)
+const showLogo = ref(true)
 
 const data = await useGetVideo(`/${id}`)
 video.value = data.value
@@ -88,6 +89,10 @@ const showReadMore = computed(() => video.value?.description?.length > 750)
 
 function setReadMore() {
   readMore.value = !readMore.value
+}
+
+function removeLogo() {
+  return (showLogo.value = false)
 }
 </script>
 
