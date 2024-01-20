@@ -9,10 +9,13 @@
       "
     >
       <div class="w-5/6 pt-4 pl-3 pr-2 relative">
-        <NuxtLink :to="dynamicVideoRoute" class="text-gray-100 pt-1 font-bold w-5/6 text-left underline video-link">
+        <NuxtLink
+          :to="dynamicVideoRoute"
+          class="text-gray-100 pt-1 decoration-from-font underline-offset-4 font-bold w-5/6 text-left underline video-link"
+        >
           {{ reducedTitle }}
         </NuxtLink>
-        <p class="text-gray-100 text-xs font-light pb-5 mt-4 text-left break-words">
+        <p class="text-gray-100 text-sm font-light pb-5 mt-4 text-left break-words">
           {{ reducedDescription }}
         </p>
         <img src="@/assets/img/logo/rodnary-logo.webp" alt="Rodnary-logo" class="h-10 w-18 absolute bottom-3 left-3" />
@@ -51,7 +54,7 @@ const modifiedTime = computed(() => {
   return `${month}/${year}`
 })
 
-const reducedDescription = computed(() => props.video?.description.substring(0, 136))
+const reducedDescription = computed(() => props.video?.description.substring(0, 136) + '....')
 
 const isNewVideo = computed(() => {
   const today = new Date()
@@ -67,8 +70,8 @@ const getPicture = computed(() => {
 })
 
 const videoCardClasses = computed(() => {
-  if (props.showDescription) return 'h-96 rounded-lg video-card cursor-pointer video-card-effect'
-  return 'h-44 rounded-lg video-card cursor-pointer video-card-without-description'
+  if (props.showDescription) return 'h-96 rounded-lg video-card video-card-effect'
+  return 'h-44 rounded-lg video-card video-card-without-description'
 })
 </script>
 
