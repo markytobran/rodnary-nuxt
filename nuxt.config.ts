@@ -13,4 +13,5 @@ export default defineNuxtConfig({
       baseImageURL: process.env.BASE_IMG_URL,
     },
   },
+  ignore: ['pages/catch-register/**/*'],
 })
