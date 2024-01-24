@@ -1,6 +1,7 @@
 <template>
   <HomeMainImage />
-  <HomePopularSection @showAllVideos="setAllVideos" />
+  <HomePopularSection />
+  <UIObserver @intersect="setAllVideos" />
   <LazyHomeAllVideos v-if="showAllVideos" />
 </template>
 
