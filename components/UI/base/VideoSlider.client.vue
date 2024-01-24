@@ -15,7 +15,7 @@
       <span
         class="-mt-32 -ml-7 md:-mt-24 md:ml-10 pointer-events-auto bg-secondary-color text-white text-3xl rounded-full h-12 w-12 flex justify-center items-center"
       >
-        <img src="@/assets/img/icons/arrow.svg" alt="rodnary-logo" class="w-7 -rotate-90 mr-1" />
+        <img src="@/assets/img/icons/arrow.svg" alt="rodnary-logo" class="w-7 -rotate-90 mr-1" loading="lazy" />
       </span>
     </template>
 
@@ -23,7 +23,7 @@
       <span
         class="-mt-32 -mr-7 md:-mt-24 md:mr-10 pointer-events-auto bg-secondary-color text-white text-3xl rounded-full h-12 w-12 flex justify-center items-center"
       >
-        <img src="@/assets/img/icons/arrow.svg" alt="rodnary-logo" class="w-7 rotate-90 ml-1" />
+        <img src="@/assets/img/icons/arrow.svg" alt="rodnary-logo" class="w-7 rotate-90 ml-1" loading="lazy" />
       </span>
     </template>
     <vueper-slide v-for="video in videos" :key="video._id">
