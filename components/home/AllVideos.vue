@@ -11,12 +11,12 @@
     <div class="-mt-44 mb-36">
       <h3 class="font-bold heading-h3 text-slate-100 md:mb-8">Popular Videos By Category</h3>
       <div class="mt-2">
-        <UITitleSlider title="Natural Venue Fishing" url="/categories?venue=natural" />
+        <UITitleSlider title="Natural Fishing" url="/categories?venue=natural" />
         <UIBaseVideoSlider :videos="naturalVideos" @fetch-video="fetchNaturalVideos" class="mt-24 md:mt-20 -mb-32" />
       </div>
 
       <div class="-mt-44">
-        <UITitleSlider title="Commercial Venue Fishing" url="/categories?venue=commercial" />
+        <UITitleSlider title="Commercial Fishing" url="/categories?venue=commercial" />
         <UIBaseVideoSlider :videos="commercialVideos" @fetch-video="fetchCommercialVideos" class="mt-24 md:mt-20" />
       </div>
       <div class="-mt-44">
