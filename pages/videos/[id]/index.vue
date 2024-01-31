@@ -1,7 +1,7 @@
 <template>
-  <section class="h-full w-full mt-3 flex justify-center flex-column relative pb-48 text-white">
-    <div class="w-11/12 rounded-lg dark-green-background relative h-[170vh] lg:h-[120vh] mt-4 z-10">
-      <div :style="`background-image: url(${video?.coverImgLink})`" class="absolute top-0 left-0 w-full h-full opacity-10 z-0 bg-cover" />
+  <section class="h-full w-full mt-3 flex justify-center flex-column overflow-x-hidden relative pb-48 text-white">
+    <div class="w-11/12 rounded-lg dark-green-background relative min-h-[170vh] lg:min-h-[120vh] mt-4 z-10">
+      <div :style="`background-image: url(${video?.coverImgLink})`" class="absolute top-0 left-0 w-full h-full opacity-5 z-0 bg-cover" />
       <div class="flex flex-col lg:flex-row gap-5 pl-3">
         <div class="w-full lg:w-1/2 flex flex-col pt-3">
           <div class="flex">
@@ -18,7 +18,7 @@
           </div>
           <div class="flex flex-col mt-10 ml-5 h-full">
             <div class="flex">
-              <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-8">{{ video?.publishedAt }}</span>
+              <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-8">{{ publishedAt }}</span>
               <IconSubtitle class="-mt-2" />
             </div>
             <client-only>
@@ -40,7 +40,7 @@
         <client-only>
           <div class="block lg:hidden px-3">
             <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
-            <p class="w-12/12 mt-3 font-medium mb-4 text-sm">{{ description }}</p>
+            <p class="w-12/12 mt-3 font-medium mb-4 text-sm max-w-full">{{ description }}</p>
             <div>
               <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
               <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
@@ -85,7 +85,19 @@ const socialLinks = computed(() => video.value?.socialLinks)
 
 const description = computed(() => (readMore.value ? video.value?.description : video.value?.description.substring(0, 750) + '...'))
 
-const showReadMore = computed(() => video.value?.description?.length > 750)
+const showReadMore = computed(() => (video.value?.description?.length ?? 0) > 750)
+
+const publishedAt = computed(() => {
+  if (video.value?.publishedAt) {
+    const inputDate = new Date(video.value?.publishedAt)
+    const year = inputDate.getFullYear() + 1
+    const month = inputDate.getMonth() + 1
+    const day = inputDate.getDate()
+
+    return `${day}/${month}/${year}`
+  }
+  return ''
+})
 
 function setReadMore() {
   readMore.value = !readMore.value
