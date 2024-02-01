@@ -40,7 +40,7 @@
         <client-only>
           <div class="block lg:hidden px-3">
             <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
-            <p class="w-12/12 mt-3 font-medium mb-4 text-sm max-w-full">{{ description }}</p>
+            <p class="w-full mt-3 font-medium mb-4 text-sm break-words">{{ description }}</p>
             <div>
               <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
               <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
