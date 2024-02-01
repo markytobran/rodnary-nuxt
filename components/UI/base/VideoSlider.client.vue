@@ -45,7 +45,7 @@ const LIMIT = 4
 const skip = ref(0)
 
 const incrementLimitAndSkip = () => {
-  skip.value += 4
+  skip.value += 6
   emit('fetchVideo', {
     limit: LIMIT,
     skip: skip.value,
