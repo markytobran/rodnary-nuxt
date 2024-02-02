@@ -24,7 +24,7 @@
             <client-only>
               <div class="hidden lg:block relative z-10">
                 <h5 class="font-bold mt-6">{{ video?.title }}</h5>
-                <p class="w-12/12 mt-6 pr-12 font-medium mb-4">{{ description }}</p>
+                <p class="w-12/12 mt-4 pr-12 font-medium mb-4" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
                 <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
                 <div>
                   <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
@@ -38,9 +38,10 @@
           <UIBaseVideoCardVideo :id="video?.videoID" />
         </div>
         <client-only>
-          <div class="block lg:hidden px-3">
+          <div class="block lg:hidden px-3 relatve z-10">
             <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
-            <p class="w-full mt-3 font-medium mb-4 text-sm break-words">{{ description }}</p>
+            <p class="w-full mt-2 font-medium mb-4 text-sm break-words" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
+            <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
             <div>
               <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
               <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
@@ -82,8 +83,6 @@ const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
 relatedVideos.value = channelVideos.value
 
 const socialLinks = computed(() => video.value?.socialLinks)
-
-const description = computed(() => (readMore.value ? video.value?.description : video.value?.description.substring(0, 750) + '...'))
 
 const showReadMore = computed(() => (video.value?.description?.length ?? 0) > 750)
 
