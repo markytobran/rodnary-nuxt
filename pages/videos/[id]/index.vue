@@ -59,8 +59,10 @@
         </client-only>
       </div>
       <div class="w-full px-5 mt-36">
-        <UITitleSlider title="Related Videos" />
-        <UIBaseVideoSlider :videos="relatedVideos" />
+        <client-only>
+          <UITitleSlider title="Related Videos" />
+          <UIBaseVideoSlider :videos="relatedVideos" />
+        </client-only>
       </div>
     </div>
   </section>
@@ -79,8 +81,10 @@ const showLogo = ref(true)
 const data = await useGetVideo(`/${id}`)
 video.value = data.value
 
-const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
-relatedVideos.value = channelVideos.value
+onMounted(async () => {
+  const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
+  relatedVideos.value = channelVideos.value
+})
 
 const socialLinks = computed(() => video.value?.socialLinks)
 
