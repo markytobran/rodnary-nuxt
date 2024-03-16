@@ -43,7 +43,7 @@
             <p class="w-full mt-2 font-medium mb-4 text-sm break-words" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
             <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
             <div>
-              <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
+              <UITitleSubtitles title="Subtitle" :flag="video?.subtitles" />
               <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
             </div>
             <h3 class="heading-h3 font-bold mt-8">Social links</h3>
