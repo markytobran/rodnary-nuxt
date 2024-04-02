@@ -5,7 +5,7 @@
       <slot />
     </h3>
   </div>
-  <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:mb-28">
+  <div class="grid grid-cols-1 gap-2 xl:grid-cols-3 lg:mb-28">
     <UIBaseVideoCard
       v-for="(video, index) in videos"
       :key="index"
