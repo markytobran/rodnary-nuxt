@@ -6,6 +6,7 @@
       </NuxtLink>
       <ul class="flex lg:flex-col gap-4">
         <HeaderNavItem path="/" icon="home" url="/" aria-label="Home" />
+        <HeaderNavItem path="/categories" url="/categories?venue=commercial" icon="categories" aria-label="Categories" />
         <HeaderNavItem path="/search" url="/search?q=" icon="search" aria-label="Search" />
       </ul>
     </nav>

@@ -10,7 +10,7 @@
 <script setup>
 import Home from '~/components/icon/Home.vue'
 import Magnifier from '~/components/icon/Magnifier.vue'
-import Fish from '~/components/icon/Fish.vue'
+import Categories from '~/components/icon/Categories.vue'
 
 const props = defineProps({
   path: {
@@ -33,8 +33,8 @@ const iconComponent = computed(() => {
       return Home
     case 'search':
       return Magnifier
-    case 'catch-register':
-      return Fish
+    case 'categories':
+      return Categories
     default:
       return Home
   }
