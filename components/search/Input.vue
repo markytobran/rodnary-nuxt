@@ -13,7 +13,7 @@
       </button>
     </div>
     <button
-      class="w-20 md:w-24 flex flex-col justify-center items-center border-t-2 border-b-2 border-l-2 cursor-pointer"
+      class="w-20 md:w-24 flex flex-col justify-center items-center border-t-2 border-b-2 border-l-2 cursor-pointer hidden xl:flex"
       aria-label="Search by voice"
       :class="isListening ? 'pt-2 bg-average-pink' : 'bg-secondary-color'"
       @click="listenUser"
