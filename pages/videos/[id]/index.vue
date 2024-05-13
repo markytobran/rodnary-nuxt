@@ -78,13 +78,14 @@ const video: Ref<VideoData | null> = ref(null)
 const readMore = ref(false)
 const showLogo = ref(true)
 
+// Fetch data 
 const data = await useGetVideo(`/${id}`)
 video.value = data.value
 
-onMounted(async () => {
-  const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
-  relatedVideos.value = channelVideos.value
-})
+const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
+relatedVideos.value = channelVideos.value
+
+
 
 const socialLinks = computed(() => video.value?.socialLinks)
 
