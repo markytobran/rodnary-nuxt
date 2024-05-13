@@ -21,7 +21,6 @@
               <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-8">{{ publishedAt }}</span>
               <IconSubtitle class="-mt-2" />
             </div>
-            <client-only>
               <div class="hidden lg:block relative z-10">
                 <h5 class="font-bold mt-6">{{ video?.title }}</h5>
                 <p class="w-12/12 mt-4 pr-12 font-medium mb-4" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
@@ -31,13 +30,11 @@
                   <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
                 </div>
               </div>
-            </client-only>
           </div>
         </div>
         <div class="w-full lg:w-1/2 px-3 lg:px-0 mt-6 mr-6 relative">
           <UIBaseVideoCardVideo :id="video?.videoID" />
         </div>
-        <client-only>
           <div class="block lg:hidden px-3 relatve z-10">
             <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
             <p class="w-full mt-2 font-medium mb-4 text-sm break-words" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
@@ -56,13 +53,10 @@
               </IconWrapper>
             </ul>
           </div>
-        </client-only>
       </div>
       <div class="w-full px-5 mt-36">
-        <client-only>
           <UITitleSlider title="Related Videos" />
           <UIBaseVideoSlider :videos="relatedVideos" />
-        </client-only>
       </div>
     </div>
   </section>
