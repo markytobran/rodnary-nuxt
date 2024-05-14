@@ -21,42 +21,42 @@
               <span class="h-8 w-15 text-gray-100 text-xs font-semibold mr-8">{{ publishedAt }}</span>
               <IconSubtitle class="-mt-2" />
             </div>
-              <div class="hidden lg:block relative z-10">
-                <h5 class="font-bold mt-6">{{ video?.title }}</h5>
-                <p class="w-12/12 mt-4 pr-12 font-medium mb-4" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
-                <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
-                <div>
-                  <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
-                  <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
-                </div>
+            <div class="hidden lg:block relative z-10">
+              <h5 class="font-bold mt-6">{{ video?.title }}</h5>
+              <p class="w-12/12 mt-4 pr-12 font-medium mb-4" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
+              <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
+              <div>
+                <UITitleSubtitles title="Subtitles" :flag="video?.subtitles" />
+                <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
               </div>
+            </div>
           </div>
         </div>
         <div class="w-full lg:w-1/2 px-3 lg:px-0 mt-6 mr-6 relative">
           <UIBaseVideoCardVideo :id="video?.videoID" />
         </div>
-          <div class="block lg:hidden px-3 relatve z-10">
-            <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
-            <p class="w-full mt-2 font-medium mb-4 text-sm break-words" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
-            <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
-            <div>
-              <UITitleSubtitles title="Subtitle" :flag="video?.subtitles" />
-              <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
-            </div>
-            <h3 class="heading-h3 font-bold mt-8">Social links</h3>
-            <ul class="grid grid-cols-4 mt-8 gap-3 lg:hidden">
-              <IconWrapper v-for="link in socialLinks" :name="link.name" :url="link.url">
-                <IconFacebook v-if="link.name === 'facebook'" />
-                <IconInstagram v-if="link.name === 'instagram'" />
-                <IconWebsite v-if="link.name === 'website'" />
-                <IconYoutube v-if="link.name === 'youtube'" />
-              </IconWrapper>
-            </ul>
+        <div class="block lg:hidden px-3 relatve z-10">
+          <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
+          <p class="w-full mt-2 font-medium mb-4 text-sm break-words" :class="readMore ? '' : 'line-clamp-6'">{{ video?.description }}</p>
+          <UIButtonSeeMore v-if="showReadMore" @toggle-read-more="setReadMore" :read-more="readMore" />
+          <div>
+            <UITitleSubtitles title="Subtitle" :flag="video?.subtitles" />
+            <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
           </div>
+          <h3 class="heading-h3 font-bold mt-8">Social links</h3>
+          <ul class="grid grid-cols-4 mt-8 gap-3 lg:hidden">
+            <IconWrapper v-for="link in socialLinks" :name="link.name" :url="link.url">
+              <IconFacebook v-if="link.name === 'facebook'" />
+              <IconInstagram v-if="link.name === 'instagram'" />
+              <IconWebsite v-if="link.name === 'website'" />
+              <IconYoutube v-if="link.name === 'youtube'" />
+            </IconWrapper>
+          </ul>
+        </div>
       </div>
       <div class="w-full px-5 mt-36">
-          <UITitleSlider title="Related Videos" />
-          <UIBaseVideoSlider :videos="relatedVideos" />
+        <UITitleSlider title="Related Videos" />
+        <UIBaseVideoSlider :videos="relatedVideos" />
       </div>
     </div>
   </section>
@@ -72,14 +72,12 @@ const video: Ref<VideoData | null> = ref(null)
 const readMore = ref(false)
 const showLogo = ref(true)
 
-// Fetch data 
+// Fetch data
 const data = await useGetVideo(`/${id}`)
 video.value = data.value
 
-const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}`)
+const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}?limit=6&skip=0`)
 relatedVideos.value = channelVideos.value
-
-
 
 const socialLinks = computed(() => video.value?.socialLinks)
 
