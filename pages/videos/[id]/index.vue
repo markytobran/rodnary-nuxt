@@ -57,7 +57,7 @@
       <div class="w-full px-5 mt-36">
         <LazyClientOnly>
           <UITitleSlider title="Related Videos" />
-          <UIBaseVideoSlider :videos="relatedVideos" @fetch-video="fetchChannelVideos" />
+          <UIBaseVideoSlider :videos="relatedVideos ?? []" @fetch-video="fetchChannelVideos" />
         </LazyClientOnly>
       </div>
     </div>
@@ -67,7 +67,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import type { VideoData } from '~/types/videoTypes'
-import { useGetVideos, useGetVideo } from '~/composables/useVideoApi'
+import { useGetVideo } from '~/composables/useVideoApi'
 import type { limitAndSkip } from '~/components/home/AllVideos.vue'
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
@@ -87,6 +87,12 @@ onMounted(async () => {
 })
 
 const socialLinks = computed(() => video.value?.socialLinks)
+const metaDesciption = computed(() => video?.value?.description.substring(0, 160) + '...')
+
+useHead({
+  title: video?.value?.title ?? 'Rodnary Single Video Page',
+  meta: [{ name: 'description', content: metaDesciption.value }],
+})
 
 const showReadMore = computed(() => (video.value?.description?.length ?? 0) > 750)
 
