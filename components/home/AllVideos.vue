@@ -41,6 +41,8 @@ import type { Ref } from 'vue'
 import { homePageSliderData } from '../../utils/imgUrls'
 import type { VideoData } from '@/types/videoTypes'
 import { useGetVideos } from '~/composables/useVideoApi'
+const { $api } = useNuxtApp()
+const videoRepo = videoRepository($api)
 const allVideos: Ref<VideoData[] | null> = ref(null)
 const commercialVideos: Ref<VideoData[] | null> = ref(null)
 const naturalVideos: Ref<VideoData[] | null> = ref(null)
@@ -77,27 +79,47 @@ async function fetchAllVideo({ limit, skip }: limitAndSkip) {
 }
 
 async function fetchNaturalVideos({ limit, skip }: limitAndSkip) {
-  const data = await useGetVideos(`/categories/venue/natural?limit=${limit}&skip=${skip}`)
-  naturalVideos.value = naturalVideos.value instanceof Array ? naturalVideos.value.concat(data.value) : naturalVideos.value
+  try {
+    const videos = await videoRepo.getCategoryVideos('venue', 'natural', limit, skip)
+    naturalVideos.value = naturalVideos.value ? naturalVideos.value.concat(videos) : naturalVideos.value
+  } catch (e) {
+    naturalVideos.value = []
+  }
 }
 
 async function fetchCommercialVideos({ limit, skip }: limitAndSkip) {
-  const data = await useGetVideos(`/categories/venue/commercial?limit=${limit}&skip=${skip}`)
-  commercialVideos.value = commercialVideos.value instanceof Array ? commercialVideos.value.concat(data.value) : commercialVideos.value
+  try {
+    const videos = await videoRepo.getCategoryVideos('venue', 'commercial', limit, skip)
+    commercialVideos.value = commercialVideos.value ? commercialVideos.value.concat(videos) : commercialVideos.value
+  } catch (e) {
+    commercialVideos.value = []
+  }
 }
 
 async function fetchRiverVideos({ limit, skip }: limitAndSkip) {
-  const data = await useGetVideos(`/categories/water/river?limit=${limit}&skip=${skip}`)
-  riverVideos.value = riverVideos.value instanceof Array ? riverVideos.value.concat(data.value) : riverVideos.value
+  try {
+    const videos = await videoRepo.getCategoryVideos('water', 'river', limit, skip)
+    riverVideos.value = riverVideos.value ? riverVideos.value.concat(videos) : riverVideos.value
+  } catch (e) {
+    riverVideos.value = []
+  }
 }
 
 async function fetchFeederVideos({ limit, skip }: limitAndSkip) {
-  const data = await useGetVideos(`/categories/fishing/feeder?limit=${limit}&skip=${skip}`)
-  feederVideos.value = feederVideos.value instanceof Array ? feederVideos.value.concat(data.value) : feederVideos.value
+  try {
+    const videos = await videoRepo.getCategoryVideos('fishing', 'feeder', limit, skip)
+    feederVideos.value = feederVideos.value ? feederVideos.value.concat(videos) : feederVideos.value
+  } catch (e) {
+    feederVideos.value = []
+  }
 }
 
 async function fetchFloatVideos({ limit, skip }: limitAndSkip) {
-  const data = await useGetVideos(`/categories/fishing/float?limit=${limit}&skip=${skip}`)
-  floatVideos.value = floatVideos.value instanceof Array ? floatVideos.value.concat(data.value) : floatVideos.value
+  try {
+    const videos = await videoRepo.getCategoryVideos('fishing', 'float', limit, skip)
+    floatVideos.value = floatVideos.value ? floatVideos.value.concat(videos) : floatVideos.value
+  } catch (e) {
+    floatVideos.value = []
+  }
 }
 </script>
