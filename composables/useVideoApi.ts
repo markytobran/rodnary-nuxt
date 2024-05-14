@@ -1,5 +1,5 @@
 import type { VideoData } from '~/types/videoTypes'
-import { VideoAPI } from '@/types/videoTypes'
+import type { limitAndSkip } from '~/components/home/AllVideos.vue'
 
 export async function useGetVideo(id: string) {
   const config = useRuntimeConfig()
@@ -32,10 +32,11 @@ export async function useGetVideos(url: string) {
   return data
 }
 
-export async function useGetAllVideos(limit = VideoAPI.LIMIT, skip = VideoAPI.SKIP) {
+export async function useGetAllVideos(query: limitAndSkip | null = null) {
   const config = useRuntimeConfig()
-  const { data, error } = await useFetch<VideoData[]>(`/videos/allvideos?limit=${limit}&skip=${skip}`, {
+  const { data, error } = await useFetch<VideoData[]>('/videos/allvideos', {
     baseURL: config.public.baseURL,
+    ...(query ? { query } : {}),
   })
 
   if (error.value) {

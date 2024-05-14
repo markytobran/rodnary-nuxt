@@ -40,6 +40,7 @@
 import type { Ref } from 'vue'
 import { homePageSliderData } from '../../utils/imgUrls'
 import type { VideoData } from '@/types/videoTypes'
+import { VideoAPI } from '@/types/videoTypes'
 import { useGetAllVideos } from '~/composables/useVideoApi'
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
@@ -64,7 +65,7 @@ interface HomePageVideos {
   float: VideoData[]
 }
 
-const data = await useGetAllVideos()
+const data = await useGetAllVideos({ limit: VideoAPI.LIMIT, skip: VideoAPI.SKIP })
 const { all, natural, commercial, river, feeder, float } = data.value as unknown as HomePageVideos
 allVideos.value = all
 commercialVideos.value = commercial
