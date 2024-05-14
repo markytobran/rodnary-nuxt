@@ -74,8 +74,12 @@ feederVideos.value = feeder
 floatVideos.value = float
 
 async function fetchAllVideo({ limit, skip }: limitAndSkip) {
-  const data = await useGetVideos(`?limit=${limit}&skip=${skip}`)
-  allVideos.value = allVideos.value instanceof Array ? allVideos.value.concat(data.value) : allVideos.value
+  try {
+    const videos = await videoRepo.getVideos(limit, skip)
+    allVideos.value = allVideos.value ? allVideos.value.concat(videos) : allVideos.value
+  } catch (e) {
+    allVideos.value = []
+  }
 }
 
 async function fetchNaturalVideos({ limit, skip }: limitAndSkip) {
