@@ -37,17 +37,17 @@
 <script lang="ts" setup>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import type { VideoDataPropType } from '@/types/videoTypes'
+import { VideoAPI } from '@/types/videoTypes'
 import 'vueperslides/dist/vueperslides.css'
 
 const emit = defineEmits(['fetchVideo'])
 
-const LIMIT = 6
-const skip = ref(0)
+const skip = ref(VideoAPI.SKIP)
 
 const incrementLimitAndSkip = () => {
   skip.value += 6
   emit('fetchVideo', {
-    limit: LIMIT,
+    limit: VideoAPI.LIMIT,
     skip: skip.value,
   })
 }

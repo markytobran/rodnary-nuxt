@@ -56,7 +56,7 @@
       </div>
       <div class="w-full px-5 mt-36">
         <UITitleSlider title="Related Videos" />
-        <UIBaseVideoSlider :videos="relatedVideos" />
+        <UIBaseVideoSlider :videos="relatedVideos" @fetch-video="fetchChannelVideos" />
       </div>
     </div>
   </section>
@@ -66,6 +66,9 @@
 import type { Ref } from 'vue'
 import type { VideoData } from '~/types/videoTypes'
 import { useGetVideos, useGetVideo } from '~/composables/useVideoApi'
+import type { limitAndSkip } from '~/components/home/AllVideos.vue'
+const { $api } = useNuxtApp()
+const videoRepo = videoRepository($api)
 const relatedVideos: Ref<VideoData[] | null> = ref(null)
 const { id } = useRoute().params
 const video: Ref<VideoData | null> = ref(null)
@@ -97,6 +100,15 @@ const publishedAt = computed(() => {
 
 function setReadMore() {
   readMore.value = !readMore.value
+}
+
+async function fetchChannelVideos({ limit, skip }: limitAndSkip) {
+  try {
+    const videos = await videoRepo.getChannelVideos(video?.value?.channelId as string, limit, skip)
+    relatedVideos.value = relatedVideos.value ? relatedVideos.value.concat(videos) : []
+  } catch (e) {
+    relatedVideos.value = []
+  }
 }
 
 function removeLogo() {

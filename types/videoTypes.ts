@@ -27,9 +27,9 @@ export type SocialLink = {
 
 export type VideoDataPropType = VideoData[] | null
 
-export enum API {
+export enum VideoAPI {
   SKIP = 0,
-  LIMIT = 4,
+  LIMIT = 6,
 }
 
 export interface ImageLinks {
