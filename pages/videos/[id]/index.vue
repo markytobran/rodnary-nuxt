@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="w-full lg:w-1/2 px-3 lg:px-0 mt-6 mr-6 relative">
-          <UIBaseVideoCardVideo :id="video?.videoID" />
+          <UIBaseVideoCardVideo :id="video?.videoID ?? ''" />
         </div>
         <div class="block lg:hidden px-3 relatve z-10">
           <h2 class="font-bold mt-6 heading-h3">{{ video?.title }}</h2>
