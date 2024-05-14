@@ -78,7 +78,7 @@ const readMore = ref(false)
 const showLogo = ref(true)
 
 // Fetch data
-const data = await useGetVideo(`/${id}`)
+const data = await useGetVideo(id as string)
 video.value = data.value
 
 onMounted(async () => {

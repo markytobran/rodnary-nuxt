@@ -1,10 +1,10 @@
 import type { VideoData } from '~/types/videoTypes'
 import { VideoAPI } from '@/types/videoTypes'
 
-export async function useGetVideo(url: string) {
+export async function useGetVideo(id: string) {
   const config = useRuntimeConfig()
 
-  const { data, error } = await useFetch<VideoData>(url, {
+  const { data, error } = await useFetch<VideoData>(`/${id}`, {
     baseURL: config.public.baseURL + '/videos',
   })
 
