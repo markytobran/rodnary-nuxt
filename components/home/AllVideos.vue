@@ -74,54 +74,54 @@ riverVideos.value = river
 feederVideos.value = feeder
 floatVideos.value = float
 
-async function fetchAllVideo({ limit, skip }: limitAndSkip) {
+async function fetchAllVideo(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getVideos(limit, skip)
+    const videos = await videoRepo.getVideos(query)
     allVideos.value = allVideos.value ? allVideos.value.concat(videos) : allVideos.value
   } catch (e) {
     allVideos.value = []
   }
 }
 
-async function fetchNaturalVideos({ limit, skip }: limitAndSkip) {
+async function fetchNaturalVideos(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getCategoryVideos('venue', 'natural', limit, skip)
+    const videos = await videoRepo.getCategoryVideos('venue', 'natural', query)
     naturalVideos.value = naturalVideos.value ? naturalVideos.value.concat(videos) : naturalVideos.value
   } catch (e) {
     naturalVideos.value = []
   }
 }
 
-async function fetchCommercialVideos({ limit, skip }: limitAndSkip) {
+async function fetchCommercialVideos(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getCategoryVideos('venue', 'commercial', limit, skip)
+    const videos = await videoRepo.getCategoryVideos('venue', 'commercial', query)
     commercialVideos.value = commercialVideos.value ? commercialVideos.value.concat(videos) : commercialVideos.value
   } catch (e) {
     commercialVideos.value = []
   }
 }
 
-async function fetchRiverVideos({ limit, skip }: limitAndSkip) {
+async function fetchRiverVideos(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getCategoryVideos('water', 'river', limit, skip)
+    const videos = await videoRepo.getCategoryVideos('water', 'river', query)
     riverVideos.value = riverVideos.value ? riverVideos.value.concat(videos) : riverVideos.value
   } catch (e) {
     riverVideos.value = []
   }
 }
 
-async function fetchFeederVideos({ limit, skip }: limitAndSkip) {
+async function fetchFeederVideos(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getCategoryVideos('fishing', 'feeder', limit, skip)
+    const videos = await videoRepo.getCategoryVideos('fishing', 'feeder', query)
     feederVideos.value = feederVideos.value ? feederVideos.value.concat(videos) : feederVideos.value
   } catch (e) {
     feederVideos.value = []
   }
 }
 
-async function fetchFloatVideos({ limit, skip }: limitAndSkip) {
+async function fetchFloatVideos(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getCategoryVideos('fishing', 'float', limit, skip)
+    const videos = await videoRepo.getCategoryVideos('fishing', 'float', query)
     floatVideos.value = floatVideos.value ? floatVideos.value.concat(videos) : floatVideos.value
   } catch (e) {
     floatVideos.value = []
