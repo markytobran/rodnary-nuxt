@@ -7,9 +7,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  plugins: [
-    '~/plugins/analytics.ts',
-  ],
   runtimeConfig: {
     public: {
       baseURL: process.env.BASE_URL,

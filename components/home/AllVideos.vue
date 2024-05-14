@@ -48,7 +48,7 @@ const riverVideos: Ref<VideoData[] | null> = ref(null)
 const feederVideos: Ref<VideoData[] | null> = ref(null)
 const floatVideos: Ref<VideoData[] | null> = ref(null)
 
-interface limitAndSkip {
+export interface limitAndSkip {
   limit: number
   skip: number
 }
