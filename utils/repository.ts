@@ -12,4 +12,7 @@ export const videoRepository = <T>(fetch: $Fetch<T, NitroFetchRequest>) => ({
   async getCategoryVideos(key: string, value: string, query: limitAndSkip | null = null): Promise<VideoData[]> {
     return fetch<VideoData[]>(`/videos/categories/${key}/${value}`, { ...(query ? { query } : {}) })
   },
+  async getSearchVideos(q: string, query: limitAndSkip | null = null): Promise<VideoData[]> {
+    return fetch<VideoData[]>(`/videos/search?q=${q}`, { ...(query ? { query } : {}) })
+  },
 })

@@ -23,7 +23,8 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import type { VideoData } from '@/types/videoTypes'
-import { useGetVideos } from '~/composables/useVideoApi'
+const { $api } = useNuxtApp()
+const videoRepo = videoRepository($api)
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const router = useRouter()
@@ -55,10 +56,10 @@ const intersected = async () => {
     isLoading.value = true
     const { q } = route.query
     skip.value += 12
-    const data = await useGetVideos(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
+    const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
 
-    if (data.value && data.value.length) {
-      videos.value = [...(videos.value ?? []), ...data.value]
+    if (data && data.length) {
+      videos.value = [...(videos.value ?? []), ...data]
     } else {
       text.value = 'End of videos'
       showNoResults.value = true
@@ -73,10 +74,10 @@ watch(
     resetValues()
     isLoading.value = true
 
-    const data = await useGetVideos(`/search?q=${q}&limit=${LIMIT}&skip=${skip.value}`)
+    const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
 
-    if (data.value && data.value.length) {
-      videos.value = data.value
+    if (data && data.length) {
+      videos.value = data
     } else {
       videos.value = []
       showNoResults.value = true
