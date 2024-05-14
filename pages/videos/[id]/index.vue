@@ -69,6 +69,7 @@ import type { Ref } from 'vue'
 import type { VideoData } from '~/types/videoTypes'
 import { useGetVideo } from '~/composables/useVideoApi'
 import type { limitAndSkip } from '~/components/home/AllVideos.vue'
+import { VideoAPI } from '@/types/videoTypes'
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
 const relatedVideos: Ref<VideoData[] | null> = ref(null)
@@ -82,7 +83,8 @@ const data = await useGetVideo(id as string)
 video.value = data.value
 
 onMounted(async () => {
-  const videos = await videoRepo.getChannelVideos(video?.value?.channelId as string)
+  const channelId = video?.value?.channelId as string
+  const videos = await videoRepo.getChannelVideos(channelId, { limit: VideoAPI.LIMIT, skip: VideoAPI.SKIP })
   relatedVideos.value = videos
 })
 
@@ -112,9 +114,10 @@ function setReadMore() {
   readMore.value = !readMore.value
 }
 
-async function fetchChannelVideos({ limit, skip }: limitAndSkip) {
+async function fetchChannelVideos(query: limitAndSkip) {
   try {
-    const videos = await videoRepo.getChannelVideos(video?.value?.channelId as string, limit, skip)
+    const channelId = video?.value?.channelId as string
+    const videos = await videoRepo.getChannelVideos(channelId, query)
     relatedVideos.value = relatedVideos.value ? relatedVideos.value.concat(videos) : []
   } catch (e) {
     relatedVideos.value = []
