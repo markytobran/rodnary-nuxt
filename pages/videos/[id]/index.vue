@@ -55,8 +55,10 @@
         </div>
       </div>
       <div class="w-full px-5 mt-36">
-        <UITitleSlider title="Related Videos" />
-        <UIBaseVideoSlider :videos="relatedVideos" @fetch-video="fetchChannelVideos" />
+        <LazyClientOnly>
+          <UITitleSlider title="Related Videos" />
+          <UIBaseVideoSlider :videos="relatedVideos" @fetch-video="fetchChannelVideos" />
+        </LazyClientOnly>
       </div>
     </div>
   </section>
@@ -79,8 +81,10 @@ const showLogo = ref(true)
 const data = await useGetVideo(`/${id}`)
 video.value = data.value
 
-const channelVideos = await useGetVideos(`/channels/${video?.value?.channelId}?limit=6&skip=0`)
-relatedVideos.value = channelVideos.value
+onMounted(async () => {
+  const videos = await videoRepo.getChannelVideos(video?.value?.channelId as string)
+  relatedVideos.value = videos
+})
 
 const socialLinks = computed(() => video.value?.socialLinks)
 
