@@ -1,6 +1,6 @@
 <template>
   <div :class="videoCardClasses">
-    <UIBaseVideoCardImage :id="video?.videoID" :url="getPicture" :is-new-video="isNewVideo" :to="dynamicVideoRoute" />
+    <UIBaseVideoCardImage :url="getPicture" :is-new-video="isNewVideo" :to="dynamicVideoRoute" />
     <div
       :class="
         showDescription
@@ -66,7 +66,7 @@ const isNewVideo = computed(() => {
 })
 
 const getPicture = computed(() => {
-  return props.video.thumbnails.find((el) => el.name === 'medium')?.url
+  return (props.video.thumbnails ?? []).find((el) => el.name === 'medium')?.url
 })
 
 const videoCardClasses = computed(() => {

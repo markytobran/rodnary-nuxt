@@ -11,10 +11,6 @@ defineProps({
     type: String,
     required: true,
   },
-  id: {
-    type: String,
-    required: true,
-  },
   isNewVideo: {
     type: Boolean,
     required: false,

@@ -19,5 +19,5 @@ interface HomeTopVideos {
   commercialVideos: VideoData[]
 }
 
-const videos = (await useGetVideos(`/topvideos?limit=3&skip=0`)) as unknown as HomeTopVideos
+const videos = (await useGetVideos('/topvideos?limit=3&skip=0')) as unknown as HomeTopVideos
 </script>
