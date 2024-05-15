@@ -38,7 +38,6 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import type { VideoData } from '@/types/videoTypes'
-import { useGetVideos } from '~/composables/useVideoApi'
 
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
