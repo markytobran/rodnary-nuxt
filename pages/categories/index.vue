@@ -39,6 +39,10 @@
 import type { Ref } from 'vue'
 import type { VideoData } from '@/types/videoTypes'
 import { useGetVideos } from '~/composables/useVideoApi'
+
+const { $api } = useNuxtApp()
+const videoRepo = videoRepository($api)
+
 const videos: Ref<VideoData[] | null> = ref(null)
 const route = useRoute()
 const titleKey: Ref<string> = ref('')
@@ -96,38 +100,51 @@ const toggleLoading = () => (loading.value = !loading.value)
 const resetSkip = () => (skip.value = 0)
 
 const intersected = async () => {
-  if (!showNoResults.value) {
-    toggleLoading()
-    showScrollUp.value = true
-    const [key, value] = Object.entries(route.query)[0]
-    skip.value += 12
+  if (!showNoResults.value && !loading.value) {
+    try {
+      toggleLoading()
+      showScrollUp.value = true
+      const [key, value] = Object.entries(route.query)[0]
+      skip.value += LIMIT
 
-    const data = await useGetVideos(`/categories/${key}/${value}?limit=${LIMIT}&skip=${skip.value}`)
+      const data = await videoRepo.getCategoryVideos(key, value as string, { limit: LIMIT, skip: skip.value })
 
-    if (data.value && data.value.length) {
-      videos.value = [...(videos.value ?? []), ...data.value]
-    } else {
+      if (data && data.length) {
+        videos.value = [...(videos.value ?? []), ...data]
+      } else {
+        showNoResults.value = true
+      }
+    } catch (error) {
+      console.error('Error fetching category videos:', error)
       showNoResults.value = true
+    } finally {
+      toggleLoading()
     }
-    toggleLoading()
   }
 }
 
 watch(
   () => route.query,
   async (query) => {
-    showNoResults.value = false
-    resetSkip()
-    toggleLoading()
+    try {
+      showNoResults.value = false
+      resetSkip()
+      toggleLoading()
 
-    const [key, value] = Object.entries(query)[0]
+      const [key, value] = Object.entries(query)[0]
 
-    //Set title
-    setTitleKey(value as string)
+      // Set title
+      setTitleKey(value as string)
 
-    const data = await useGetVideos(`/categories/${key}/${value}?limit=${LIMIT}&skip=0`)
-    videos.value = data.value
-    toggleLoading()
+      const data = await videoRepo.getCategoryVideos(key, value as string, { limit: LIMIT, skip: skip.value })
+
+      videos.value = data
+    } catch (error) {
+      console.error('Error fetching category videos:', error)
+      showNoResults.value = true
+    } finally {
+      toggleLoading()
+    }
   },
   { deep: true, immediate: true }
 )

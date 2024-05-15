@@ -66,6 +66,7 @@ interface HomePageVideos {
 }
 
 const data = await useGetAllVideos({ limit: VideoAPI.LIMIT, skip: VideoAPI.SKIP })
+
 const { all, natural, commercial, river, feeder, float } = data.value as unknown as HomePageVideos
 allVideos.value = all
 commercialVideos.value = commercial

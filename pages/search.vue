@@ -56,7 +56,7 @@ const resetValues = () => {
 onBeforeMount(redirectToSearchWithQuery)
 
 const intersected = async () => {
-  if (!showNoResults.value) {
+  if (!showNoResults.value && !isLoading.value) {
     showScrollUp.value = true
     isLoading.value = true
     const { q } = route.query
