@@ -52,14 +52,6 @@ const skip = ref(0)
 const showNoResults = ref(false)
 const showScrollUp: Ref<boolean> = ref(false)
 
-interface TitleData {
-  commercial: string
-  natural: string
-  river: string
-  feeder: string
-  float: string
-}
-
 const titleData = {
   commercial: 'Commercial Venue Fishing',
   natural: 'Natural Venue Fishing',
@@ -75,6 +67,14 @@ const links = [
   { name: 'Feeder', path: '/categories?fishing=feeder' },
   { name: 'Float', path: '/categories?fishing=float' },
 ]
+
+interface TitleData {
+  commercial: string
+  natural: string
+  river: string
+  feeder: string
+  float: string
+}
 
 useHead({
   title: 'Category Page | Rodnary',

@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { homePageSliderData } from '../../utils/imgUrls'
+import { homePageSliderData } from '../../contants/imgUrls'
 import type { VideoData } from '@/types/videoTypes'
 import { VideoAPI } from '@/types/videoTypes'
 import { useGetAllVideos } from '~/composables/useVideoApi'

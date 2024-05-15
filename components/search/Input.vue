@@ -13,7 +13,7 @@
       </button>
     </div>
     <button
-      class="w-20 md:w-24 flex flex-col justify-center items-center border-t-2 border-b-2 border-l-2 cursor-pointer hidden xl:flex"
+      class="w-20 md:w-24 border-t-2 border-b-2 border-l-2 cursor-pointer hidden xl:flex xl:flex-col xl:justify-center xl:items-center"
       aria-label="Search by voice"
       :class="isListening ? 'pt-2 bg-average-pink' : 'bg-secondary-color'"
       @click="listenUser"
@@ -35,13 +35,7 @@
 
 <script setup lang="ts">
 const searchText = ref('')
-const isListening = ref(false)
-const showDeleteBtn = computed(() => searchText.value.length > 0)
-const resetInputField = () => {
-  searchText.value = ''
-  router.push('/search?q=')
-}
-const router = useRouter()
+
 const props = defineProps({
   isLoading: {
     type: Boolean,
@@ -50,11 +44,20 @@ const props = defineProps({
   },
 })
 
+const showDeleteBtn = computed(() => searchText.value.length > 0)
+
+const router = useRouter()
 const searchSubmit = () => {
   const encoded = encodeURI(searchText.value)
   router.push('/search?q=' + encoded)
 }
 
+const resetInputField = () => {
+  searchText.value = ''
+  router.push('/search?q=')
+}
+
+const isListening = ref(false)
 const listenUser = () => {
   isListening.value = true
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
