@@ -2,10 +2,14 @@ import type { VideoData } from '~/types/videoTypes'
 import type { limitAndSkip } from '~/components/home/AllVideos.vue'
 
 export async function useGetVideo(id: string) {
+  const nuxtApp = useNuxtApp()
   const config = useRuntimeConfig()
 
   const { data, error } = await useFetch<VideoData>(`/${id}`, {
     baseURL: config.public.baseURL + '/videos',
+    getCachedData(key) {
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+    },
   })
 
   if (!data.value) {
