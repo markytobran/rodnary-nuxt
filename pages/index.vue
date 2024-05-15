@@ -11,7 +11,7 @@ import { getSessionItem, setSessionItem } from '~/composables/useSessionStorage'
 const showAllVideos: Ref<string> = ref('false')
 
 useHead({
-  title: 'Rodnary',
+  title: 'Home | Rodnary',
   meta: [{ name: 'description', content: 'Rodnary home page' }],
 })
 

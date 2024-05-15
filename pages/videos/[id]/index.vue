@@ -92,7 +92,7 @@ const socialLinks = computed(() => video.value?.socialLinks)
 const metaDesciption = computed(() => video?.value?.description.substring(0, 160) + '...')
 
 useHead({
-  title: video?.value?.title ?? 'Rodnary Single Video Page',
+  title: video?.value?.title ? `${video?.value?.title} | Rodnary` : 'Video Page | Rodnary',
   meta: [{ name: 'description', content: metaDesciption.value }],
 })
 

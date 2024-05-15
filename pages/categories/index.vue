@@ -64,7 +64,16 @@ const titleData = {
   float: 'Float Fishing',
 }
 
-const title = computed(() => titleData[titleKey.value as keyof TitleData])
+useHead({
+  title: 'Category Page | Rodnary',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Welcome to our category page! Here, you can explore a variety of fascinating videos about fishing, ranging from tips and tricks to amazing catches. Discover something new and exciting today!',
+    },
+  ],
+})
 
 const links = [
   { name: 'Commercial', path: '/categories?venue=commercial' },
@@ -74,6 +83,10 @@ const links = [
   { name: 'Float', path: '/categories?fishing=float' },
 ]
 
+// Computed properties
+const title = computed(() => titleData[titleKey.value as keyof TitleData])
+
+// Methods
 const setTitleKey = (value: string) => {
   titleKey.value = value.toLowerCase()
 }

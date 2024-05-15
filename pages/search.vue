@@ -35,6 +35,11 @@ const skip: Ref<number> = ref(0)
 const text: Ref<string> = ref('No results found')
 const showScrollUp: Ref<boolean> = ref(false)
 
+useHead({
+  title: 'Search | Rodnary',
+  meta: [{ name: 'description', content: '' }],
+})
+
 const redirectToSearchWithQuery = () => {
   if (!route.query.q) {
     router.push('/search?q=')
@@ -55,16 +60,23 @@ const intersected = async () => {
     showScrollUp.value = true
     isLoading.value = true
     const { q } = route.query
-    skip.value += 12
-    const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
 
-    if (data && data.length) {
-      videos.value = [...(videos.value ?? []), ...data]
-    } else {
-      text.value = 'End of videos'
-      showNoResults.value = true
+    try {
+      skip.value += 12
+      const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
+
+      if (data && data.length) {
+        videos.value = [...(videos.value ?? []), ...data]
+        showNoResults.value = false
+      } else {
+        text.value = 'End of videos'
+        showNoResults.value = true
+      }
+    } catch (error) {
+      console.error('Error fetching more videos:', error)
+    } finally {
+      isLoading.value = false
     }
-    isLoading.value = false
   }
 }
 
@@ -74,16 +86,22 @@ watch(
     resetValues()
     isLoading.value = true
 
-    const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
+    try {
+      const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
 
-    if (data && data.length) {
-      videos.value = data
-    } else {
-      videos.value = []
-      showNoResults.value = true
+      if (data && data.length) {
+        videos.value = data
+        showNoResults.value = false
+      } else {
+        videos.value = []
+        showNoResults.value = true
+      }
+      skip.value += 12
+    } catch (error) {
+      console.error('Error fetching search videos:', error)
+    } finally {
+      isLoading.value = false
     }
-    skip.value += 12
-    isLoading.value = false
   },
   { deep: true, immediate: true }
 )
