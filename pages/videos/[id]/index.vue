@@ -55,10 +55,10 @@
         </div>
       </div>
       <div class="w-full px-5 mt-36">
-        <LazyClientOnly>
+        <ClientOnly>
           <UITitleSlider title="Related Videos" />
-          <UIBaseVideoSlider :videos="relatedVideos ?? []" @fetch-video="fetchChannelVideos" />
-        </LazyClientOnly>
+          <LazyUIBaseVideoSlider :videos="relatedVideos ?? []" @fetch-video="fetchChannelVideos" />
+        </ClientOnly>
       </div>
     </div>
   </section>
