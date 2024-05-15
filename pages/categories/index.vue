@@ -26,7 +26,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mt-4 mb-24">
           <UIBaseVideoCard v-for="video in videos" :video="video" />
         </div>
-        <UILoader v-if="loading" text="Loading videos" />
+        <UILoader v-if="isLoading" text="Loading videos" />
         <UINoResults v-if="showNoResults" text="End of videos" />
         <UIObserver @intersect="intersected" />
       </ClientOnly>
@@ -38,7 +38,9 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import type { VideoData } from '@/types/videoTypes'
+import { useLoading } from '~/composables/useLoading'
 
+const { isLoading, toggleLoading } = useLoading()
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
 
@@ -47,7 +49,6 @@ const route = useRoute()
 const titleKey: Ref<string> = ref('')
 const LIMIT = 12
 const skip = ref(0)
-const loading = ref(false)
 const showNoResults = ref(false)
 const showScrollUp: Ref<boolean> = ref(false)
 
@@ -92,12 +93,10 @@ const setTitleKey = (value: string) => {
   titleKey.value = value.toLowerCase()
 }
 
-const toggleLoading = () => (loading.value = !loading.value)
-
 const resetSkip = () => (skip.value = 0)
 
 const intersected = async () => {
-  if (!showNoResults.value && !loading.value) {
+  if (!showNoResults.value && !isLoading.value) {
     try {
       toggleLoading()
       showScrollUp.value = true

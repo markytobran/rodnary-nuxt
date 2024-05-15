@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { getSessionItem, setSessionItem } from '~/composables/useSessionStorage'
+import { getSessionItem, setSessionItem } from '~/utils/sessionStorage'
 const showAllVideos: Ref<string> = ref('false')
 
 useHead({

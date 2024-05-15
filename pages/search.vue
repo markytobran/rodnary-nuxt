@@ -23,12 +23,13 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import type { VideoData } from '@/types/videoTypes'
+import { useLoading } from '~/composables/useLoading'
 
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
+const { isLoading, toggleLoading } = useLoading()
 
 const videos: Ref<VideoData[] | null> = ref(null)
-const isLoading: Ref<boolean> = ref(false)
 const showNoResults: Ref<boolean> = ref(false)
 
 const LIMIT = 12
@@ -59,10 +60,6 @@ function resetValues() {
   skip.value = 0
 }
 
-function setIsLoading(val: boolean) {
-  isLoading.value = val
-}
-
 function setShowNoResults(val: boolean) {
   showNoResults.value = val
 }
@@ -73,7 +70,7 @@ onBeforeMount(redirectToSearchWithQuery)
 const intersected = async () => {
   if (!showNoResults.value && !isLoading.value) {
     showScrollUp.value = true
-    setIsLoading(true)
+    toggleLoading()
 
     try {
       skip.value += LIMIT
@@ -89,7 +86,7 @@ const intersected = async () => {
     } catch (error) {
       console.error('Error fetching more videos:', error)
     } finally {
-      setIsLoading(false)
+      toggleLoading()
     }
   }
 }
@@ -98,7 +95,7 @@ watch(
   () => route.query.q,
   async (q) => {
     resetValues()
-    setIsLoading(true)
+    toggleLoading()
 
     try {
       const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
@@ -114,7 +111,7 @@ watch(
     } catch (error) {
       console.error('Error fetching search videos:', error)
     } finally {
-      setIsLoading(false)
+      toggleLoading()
     }
   },
   { deep: true, immediate: true }
