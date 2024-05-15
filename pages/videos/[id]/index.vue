@@ -84,8 +84,13 @@ video.value = data.value
 
 onMounted(async () => {
   const channelId = video?.value?.channelId as string
-  const videos = await videoRepo.getChannelVideos(channelId, { limit: VideoAPI.LIMIT, skip: VideoAPI.SKIP })
-  relatedVideos.value = videos
+
+  try {
+    const videos = await videoRepo.getChannelVideos(channelId, { limit: VideoAPI.LIMIT, skip: VideoAPI.SKIP })
+    relatedVideos.value = videos
+  } catch (e) {
+    console.log('Error fetching channel videos', e)
+  }
 })
 
 const socialLinks = computed(() => video.value?.socialLinks)
