@@ -67,6 +67,14 @@ const titleData = {
   float: 'Float Fishing',
 }
 
+const links = [
+  { name: 'Commercial', path: '/categories?venue=commercial' },
+  { name: 'Natural', path: '/categories?venue=natural' },
+  { name: 'River', path: '/categories?water=river' },
+  { name: 'Feeder', path: '/categories?fishing=feeder' },
+  { name: 'Float', path: '/categories?fishing=float' },
+]
+
 useHead({
   title: 'Category Page | Rodnary',
   meta: [
@@ -78,18 +86,8 @@ useHead({
   ],
 })
 
-const links = [
-  { name: 'Commercial', path: '/categories?venue=commercial' },
-  { name: 'Natural', path: '/categories?venue=natural' },
-  { name: 'River', path: '/categories?water=river' },
-  { name: 'Feeder', path: '/categories?fishing=feeder' },
-  { name: 'Float', path: '/categories?fishing=float' },
-]
-
-// Computed properties
 const title = computed(() => titleData[titleKey.value as keyof TitleData])
 
-// Methods
 const setTitleKey = (value: string) => {
   titleKey.value = value.toLowerCase()
 }

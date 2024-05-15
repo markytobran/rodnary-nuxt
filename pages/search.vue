@@ -23,13 +23,14 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import type { VideoData } from '@/types/videoTypes'
+
 const { $api } = useNuxtApp()
 const videoRepo = videoRepository($api)
+
 const videos: Ref<VideoData[] | null> = ref(null)
-const route = useRoute()
-const router = useRouter()
 const isLoading: Ref<boolean> = ref(false)
 const showNoResults: Ref<boolean> = ref(false)
+
 const LIMIT = 12
 const skip: Ref<number> = ref(0)
 const text: Ref<string> = ref('No results found')
@@ -40,16 +41,30 @@ useHead({
   meta: [{ name: 'description', content: '' }],
 })
 
+const route = useRoute()
+const searchTerm = computed(() => {
+  return route.query.q
+})
+
+const router = useRouter()
 const redirectToSearchWithQuery = () => {
-  if (!route.query.q) {
+  if (!searchTerm.value) {
     router.push('/search?q=')
   }
 }
 
-const resetValues = () => {
+function resetValues() {
   showNoResults.value = false
   text.value = 'No results found'
   skip.value = 0
+}
+
+function setIsLoading(val: boolean) {
+  isLoading.value = val
+}
+
+function setShowNoResults(val: boolean) {
+  showNoResults.value = val
 }
 
 //Redirect
@@ -58,24 +73,23 @@ onBeforeMount(redirectToSearchWithQuery)
 const intersected = async () => {
   if (!showNoResults.value && !isLoading.value) {
     showScrollUp.value = true
-    isLoading.value = true
-    const { q } = route.query
+    setIsLoading(true)
 
     try {
-      skip.value += 12
-      const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
+      skip.value += LIMIT
+      const data = await videoRepo.getSearchVideos(searchTerm.value as string, { limit: LIMIT, skip: skip.value })
 
-      if (data && data.length) {
+      if (data.length) {
         videos.value = [...(videos.value ?? []), ...data]
-        showNoResults.value = false
+        setShowNoResults(false)
       } else {
         text.value = 'End of videos'
-        showNoResults.value = true
+        setShowNoResults(true)
       }
     } catch (error) {
       console.error('Error fetching more videos:', error)
     } finally {
-      isLoading.value = false
+      setIsLoading(false)
     }
   }
 }
@@ -84,23 +98,23 @@ watch(
   () => route.query.q,
   async (q) => {
     resetValues()
-    isLoading.value = true
+    setIsLoading(true)
 
     try {
       const data = await videoRepo.getSearchVideos(q as string, { limit: LIMIT, skip: skip.value })
 
-      if (data && data.length) {
+      if (data.length) {
         videos.value = data
-        showNoResults.value = false
+        setShowNoResults(false)
       } else {
         videos.value = []
-        showNoResults.value = true
+        setShowNoResults(true)
       }
-      skip.value += 12
+      skip.value += LIMIT
     } catch (error) {
       console.error('Error fetching search videos:', error)
     } finally {
-      isLoading.value = false
+      setIsLoading(false)
     }
   },
   { deep: true, immediate: true }
