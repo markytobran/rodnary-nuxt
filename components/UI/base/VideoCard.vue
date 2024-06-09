@@ -54,7 +54,7 @@ const modifiedTime = computed(() => {
   return `${month}/${year}`
 })
 
-const reducedDescription = computed(() => props.video?.description.substring(0, 136) + '....')
+const reducedDescription = computed(() => props.video?.description.substring(0, 100) + '....')
 
 const isNewVideo = computed(() => {
   const today = new Date()
@@ -66,7 +66,7 @@ const isNewVideo = computed(() => {
 })
 
 const getPicture = computed(() => {
-  return (props.video.thumbnails ?? []).find((el) => el.name === 'medium')?.url
+  return (props.video.thumbnails ?? []).find((el) => el.name === 'medium')?.url ?? ''
 })
 
 const videoCardClasses = computed(() => {

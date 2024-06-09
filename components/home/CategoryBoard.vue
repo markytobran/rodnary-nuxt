@@ -1,6 +1,6 @@
 <template>
   <section class="md:px-36 xl:px-20 mb-10">
-    <h3 class="font-bold text-lg text-slate-100 text-xl md:text-2xl mb-5 md:mb-10">Rodnary specials</h3>
+    <h3 class="font-bold text-lg text-slate-100 md:text-2xl mb-5 md:mb-10">Rodnary specials</h3>
     <div class="bg-primary-color-200 w-full mb-10 rounded-xl flex gap-24 pl-32 mt-20" style="height: 550px">
       <div class="flex flex-col justify-between p-2">
         <div class="h-24 w-24 rounded-full" v-for="(item, i) in logoList.firstColumn" :key="i">
