@@ -44,7 +44,7 @@
             <UITitleAudioLang title="Audio Language" :flag="video?.videoLanguage" />
           </div>
           <h3 class="heading-h3 font-bold mt-8">Social links</h3>
-          <ul class="grid grid-cols-4 mt-8 gap-3 lg:hidden">
+          <ul class="grid grid-cols-4 mt-8 ml-4 gap-2 lg:hidden">
             <IconWrapper v-for="link in socialLinks" :name="link.name" :url="link.url">
               <IconFacebook v-if="link.name === 'facebook'" />
               <IconInstagram v-if="link.name === 'instagram'" />
